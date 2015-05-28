@@ -95,8 +95,7 @@ var app = {
     $.each(data.rounds, function (i, round) {
       $.each(round.events, function (i, event) {
         if (event.type == 'frag') {
-          $('.chat_container').append('<div class="event">' + event.timestamp + ': <span class="killer">Player ' + event.fragger + '</span> killed <span class="dead">Player ' + event.fragged + '</span></div>');
-          
+          $('.chat_container').append('<div class="event"><span class="timestamp">' + moment(event.timestamp).format('HH:mm:ss') + ':</span> <span class="killer">Player ' + event.fragger + '</span> killed <span class="dead">Player ' + event.fragged + '</span></div>');
         }
       });
     });
