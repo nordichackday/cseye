@@ -48,11 +48,32 @@ var app = {
     });
   },
   printDataWrapper: function (data) {
-    app.printPlayerTable();
+    // app.printPlayerTable();
+    app.printRoundScoreStatistics(data);
     app.printRoundStatistics(data);
   },
+  printRoundScoreStatistics: function (data) {
+    $('.terrorists .value').html(data.teams[0].score)
+    $('.counter_terrorists .value').html(data.teams[1].score)
+  },
   printRoundStatistics: function (data) {
-    console.log(data)
+    $('.round_statistics .terrorists, .round_statistics .terrorists').empty();
+    $.each(data.rounds, function (i, el) {
+      // Check if terrorist win.
+      if (el.winner == el.t) {
+        $('.round_statistics .terrorists').append('<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>');
+      }
+      else {
+        $('.round_statistics .terrorists').append('<span class="result"></span>');
+      }
+      // Check if counter terrorist win.
+      if (el.winner == el.ct) {
+        $('.round_statistics .counter_terrorists').append('<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>');
+      }
+      else {
+        $('.round_statistics .counter_terrorists').append('<span class="result"></span>');
+      }
+    });
   },
   initSortTable: function () {
     var paging = false;
@@ -86,6 +107,7 @@ var app = {
     app.path = '';
     app.initBars();
     app.initSortTable();
+    app.getData();
   }
 }
 
