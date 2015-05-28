@@ -47,9 +47,12 @@ var app = {
       }
     });
   },
-  printDataWrapper: function () {
+  printDataWrapper: function (data) {
     app.printPlayerTable();
-    app.printRoundStatistics();
+    app.printRoundStatistics(data);
+  },
+  printRoundStatistics: function () {
+    
   },
   initSortTable: function () {
     var paging = false;
