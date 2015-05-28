@@ -38,7 +38,7 @@ var app = {
     });
   },
   getData: function () {
-    window.setInterval(function(){
+    
       $.ajax({
         url: 'http://cseye.dev/response.json',
         method: 'GET',
@@ -47,8 +47,12 @@ var app = {
           app.printDataWrapper(data);
         }
       });
-    }, 5000);
-
+    }, (app.timeOut * 1000)) ;
+  },
+  setDataInterval: function () {
+    window.setInterval(function(){
+      app.getData();
+    });
   },
   printDataWrapper: function (data) {
     // app.printPlayerTable();
@@ -106,11 +110,13 @@ var app = {
     $('span.bar').peity('bar')
   },
   init: function () {
+    app.timeOut = 5;
     app.projectName = '';
     app.path = '';
     app.initBars();
     app.initSortTable();
     app.getData();
+    app.setDataInterval();
   }
 }
 
