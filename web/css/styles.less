@@ -3,19 +3,8 @@
   padding: 0;
 }
 .wrapper {
-  width: 100%;
   img {
     width: 100%;
-  }
-  .left_container {
-    float: left;
-    width: 49%;
-    margin-right: 1%;
-  }
-  .right_container {
-    float: right;
-    margin-left: 1%;
-    width: 49%;
   }
   .video_container,
   .map_container {
@@ -50,6 +39,42 @@
 
   .content_container {
     background-color: #000;
+    margin: auto auto;
+    width: 95%;
+    .left_container {
+      float: left;
+      width: 49%;
+      margin-right: 1%;
+    }
+    .right_container {
+      float: right;
+      margin-left: 1%;
+      width: 49%;
+    }
+    .bar_container {
+      margin-top: 20px;
+      margin-left: 0;
+      .bar {
+        margin-left: -20px;
+      }
+      .values_bar {
+        font-family: georgia;
+        font-size: 40px;
+        .left_value {
+          display: block;
+          float: left;
+          text-align: center;
+          width: 50%;
+        }
+        .right_value {
+          display: block;
+          float: right;
+          text-align: center;
+          width: 50%;
+        }
+
+      }
+    }
   }
 
   

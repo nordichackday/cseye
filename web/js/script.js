@@ -53,14 +53,15 @@ var app = {
   },
   initBars: function () {
     $.fn.peity.defaults.bar = {
-  delimiter: ",",
-  fill: ["#4d89f9"],
-  height: 200,
-  max: null,
-  min: 0,
-  padding: 0.3  ,
-  width: $('.wrapper').width() / 2
-}
+      delimiter: ",",
+      fill: ["#c0beb8", '#c6a71f'],
+      height: 200,
+      max: null,
+      min: 0,
+      padding: 0,
+      width: $('.bar_wrapper').width()
+    }
+    $('.values_bar').width($('.bar_wrapper').width())
     $('span.bar').peity('bar')
   },
   init: function () {
