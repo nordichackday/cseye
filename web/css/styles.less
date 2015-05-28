@@ -3,10 +3,6 @@
   padding: 0;
 }
 .wrapper {
-  .float_left {
-    float: left;
-
-  }
   width: 100%;
   img {
     width: 100%;
@@ -20,39 +16,79 @@
     width: 50%;
   }
 
+  .video_container,
+  .map_container {
+    background-color: #000;
+  }
+  .bar_container {
+  }
+
+  .inner {
+    padding: 10px;
+  }
   /* Table styles */
-  .dataTable thead {
-    .sorting_asc span,
-    .sorting_desc span,
-    .sorting span {
-      background-position: 100% 50%;
-      background-repeat: no-repeat;
-      display: inline-block;
-      padding-right: 16px;
+  .dataTable {
+    width: 100%;
+    th,
+    td {
+      padding: 5px;
     }
-    .sorting_asc span {
-      background-image: url('../img/sort_asc.svg');
+    thead {
+      th {
+        text-align: left;
+        border: 0;
+        border-bottom: 1px solid #222;
+        cursor: pointer;
+        outline: none;
+        vertical-align: middle;
+      }
+      .sorting_asc span,
+      .sorting_desc span,
+      .sorting span {
+        background-position: 100% 50%;
+        background-repeat: no-repeat;
+        display: inline-block;
+        padding-right: 16px;
+        cursor: pointer;
+      }
+      .sorting_asc span {
+        background-image: url('../img/sort_asc.svg');
+      }
+      .sorting_desc span {
+        background-image: url('../img/sort_desc.svg');
+      }
+      .sorting span {
+        background-image: url('../img/sort.svg');
+      }
+      tr:nth-child(even) {
+        background-color: #fff;
+      }
     }
-    .sorting_desc span {
-      background-image: url('../img/sort_desc.svg');
-    }
-    .sorting span {
-      background-image: url('../img/sort.svg');
+    tbody {
+      border: 0;
+      tr:nth-child(odd) .sorting_1 {
+        background-color: #e9e9e9;
+      }
+      tr:nth-child(even) .sorting_1 {
+        background-color: #f1f1f1;
+      }
+      tr:nth-child(odd) {
+        background-color: #f1f1f1;
+      }
+      tr:nth-child(even) {
+        background-color: #fff;
+      }
     }
   }
-  .dataTables_info {
+
+  /* General styles */
+  .clear_both {
+    clear: both;
+  }
+  .hidden {
     display: none;
   }
-  .plus,
-  .percent,
-  .number {
-    text-align: right;
-  }
-  .table_container {
-    min-height: 40px;
-    font-size: 13px;
-  }
-  .dataTable {
-    max-width: 578px;
+  .nowrap {
+    white-space: nowrap;
   }
 }

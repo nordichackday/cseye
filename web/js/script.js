@@ -51,8 +51,20 @@ var app = {
       searching:searching
     });
   },
+  initBars: function () {
+    $.fn.peity.defaults.bar = {
+  delimiter: ",",
+  fill: ["#4d89f9"],
+  height: 200,
+  max: null,
+  min: 0,
+  padding: 0.3  ,
+  width: $('.wrapper').width() / 2
+}
+    $('span.bar').peity('bar')
+  },
   init: function () {
-
+    app.initBars();
   }
 }
 
