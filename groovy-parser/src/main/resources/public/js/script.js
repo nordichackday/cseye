@@ -61,31 +61,32 @@ var app = {
     app.printRoundStatistics(data);
   },
   printPlayerTable: function(data) {
-    var table = '';
+    var tbody = '';
     _.each(data.teams, function(team) {
       _.each(team.players, function(player) {
-        table += '<tr><td>' + player.name + '</td>';
-        table += '<td>' + player.kills + '</td>';
-        table += '<td>' + player.assists + '</td>';
-        table += '<td>' + player.deaths + '</td>';
-        table += '<td>';
-        if(player.deaths) {
-          table += Math.round(player.kills / player.deaths * 100) / 100;
+        tbody += '<tr><td>' + player.name + '</td>';
+        tbody += '<td>' + player.kills + '</td>';
+        tbody += '<td>' + player.assists + '</td>';
+        tbody += '<td>' + player.deaths + '</td>';
+        tbody += '<td>';
+        if (player.deaths) {
+          tbody += Math.round(player.kills / player.deaths * 100) / 100;
         }
-        table += '</td>';
-        table += '<td data-order="';
-        if(player.kills) {
-          table += Math.round(player.headshots / player.kills * 100);
+        tbody += '</td>';
+        tbody += '<td data-order="';
+        if (player.kills) {
+          tbody += Math.round(player.headshots / player.kills * 100);
         }
-        table += '">';
-        if(player.kills) {
-          table += Math.round(player.headshots / player.kills * 100) / 1;
+        tbody += '">';
+        if (player.kills) {
+          tbody += Math.round(player.headshots / player.kills * 100) / 1;
         }
-        table += ' %</td>';
-        table += '<td>' + player.points + '</td></tr>';
+        tbody += ' %</td>';
+        tbody += '<td>' + player.points + '</td></tr>';
       });
     });
-    $('.player_table_container table tbody').html(table);
+    var table = '<table class="dataTable"><thead><tr><th class="sorting"><span>Name</span></th><th class="sorting"><span>Kills</span></th><th class="sorting"><span>Assists</span></th><th class="sorting"><span>Deaths</span></th><th class="sorting"><span>K/D Ratio</span></th><th class="sorting"><span>Headshot %</span></th><th class="sorting"><span>Score</span></th></tr></thead><tbody>' + tbody + '</tbody></table>';
+    $('.player_table_container').html(table);
     app.initSortTable();
   },
   printRoundScoreStatistics: function (data) {
@@ -115,7 +116,7 @@ var app = {
     var paging = false;
     var searching = false;
     // http://datatables.net/
-    $('.dataTable').DataTable({
+    app.data_table = $('.dataTable').DataTable({
       language: {
         searchPlaceholder: 'Hae taulukosta',
         url: app.path + 'js/libs/English.json'
