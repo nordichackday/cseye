@@ -51,8 +51,8 @@ var app = {
     app.printPlayerTable();
     app.printRoundStatistics(data);
   },
-  printRoundStatistics: function () {
-    
+  printRoundStatistics: function (data) {
+    console.log(data)
   },
   initSortTable: function () {
     var paging = false;
