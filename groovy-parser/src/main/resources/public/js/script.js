@@ -38,7 +38,7 @@ var app = {
     });
   },
   getData: function () {
-    window.setTimeout(function(){
+    window.setInterval(function(){
       $.ajax({
         url: 'http://cseye.dev/response.json',
         method: 'GET',
@@ -47,7 +47,7 @@ var app = {
           app.printDataWrapper(data);
         }
       });
-    }, 5000)
+    }, 5000);
 
   },
   printDataWrapper: function (data) {
