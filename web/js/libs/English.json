@@ -1,0 +1,17 @@
+{
+  "sProcessing":   "Loading...",
+  "sLengthMenu":   "Show _MENU_ rows",
+  "sZeroRecords":  "Product not found",
+  "sInfo":         "Näytetään rivit _START_–_END_ (yhteensä _TOTAL_)",
+  "sInfoEmpty":    "Näytetään 0 - 0 (yhteensä 0)",
+  "sInfoFiltered": "(suodatettu _MAX_ tuloksen joukosta)",
+  "sInfoPostFix":  "",
+  "sSearch":       "_INPUT_",
+  "sUrl":          "",
+  "oPaginate": {
+    "sFirst":    "Ensimmäinen",
+    "sPrevious": "Edellinen",
+    "sNext":     "Seuraava",
+    "sLast":     "Viimeinen"
+  }
+}

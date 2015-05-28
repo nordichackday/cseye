@@ -41,10 +41,10 @@ var app = {
     var paging = false;
     var searching = false;
     // http://datatables.net/
-    $('.table_container', '#esi-vis').DataTable({
+    $('.dataTable').DataTable({
       language: {
         searchPlaceholder: 'Hae taulukosta',
-        url: yleApp.path + 'js/libs/Finnish.json'
+        url: app.path + 'js/libs/English.json'
       },
       order:[[2, 'asc']],
       paging:paging,
@@ -65,7 +65,10 @@ var app = {
     $('span.bar').peity('bar')
   },
   init: function () {
+    app.projectName = '';
+    app.path = '';
     app.initBars();
+    app.initSortTable();
   }
 }
 
