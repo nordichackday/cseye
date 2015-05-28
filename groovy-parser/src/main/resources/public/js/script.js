@@ -38,7 +38,6 @@ var app = {
     });
   },
   getData: function () {
-    
       $.ajax({
         url: 'http://cseye.dev/response.json',
         method: 'GET',
@@ -55,9 +54,37 @@ var app = {
     });
   },
   printDataWrapper: function (data) {
-    // app.printPlayerTable();
+    app.printPlayerTable(data);
     app.printRoundScoreStatistics(data);
     app.printRoundStatistics(data);
+  },
+  printPlayerTable: function(data) {
+    var table = '';
+    _.each(data.teams, function(team) {
+      _.each(team.players, function(player) {
+        table += '<tr><td>' + player.name + '</td>';
+        table += '<td>' + player.kills + '</td>';
+        table += '<td>' + player.assists + '</td>';
+        table += '<td>' + player.deaths + '</td>';
+        table += '<td>';
+        if(player.deaths) {
+          table += Math.round(player.kills / player.deaths * 100) / 100;
+        }
+        table += '</td>';
+        table += '<td data-order="';
+        if(player.kills) {
+          table += Math.round(player.headshots / player.kills * 100);
+        }
+        table += '">';
+        if(player.kills) {
+          table += Math.round(player.headshots / player.kills * 100) / 1 ;
+        }
+        table += ' %</td>';
+        table += '<td>' + player.points + '</td></tr>';
+      });
+    });
+    $('.player_table_container table tbody').html(table);
+    app.initSortTable();
   },
   printRoundScoreStatistics: function (data) {
     $('.terrorists .value').html(data.teams[0].score)
@@ -114,7 +141,6 @@ var app = {
     app.projectName = '';
     app.path = '';
     app.initBars();
-    app.initSortTable();
     app.getData();
     app.setDataInterval();
   }
