@@ -6,8 +6,10 @@ class Game {
     private def live = false
     private List<Round> rounds = []
 
-    private Team team1
-    private Team team2
+    private Team team1 = new Team(status: "TERRORIST")
+    private Team team2 = new Team(status: "CT")
+
+
 
     void startGame() { started = true }
     void startLive(){live = true}

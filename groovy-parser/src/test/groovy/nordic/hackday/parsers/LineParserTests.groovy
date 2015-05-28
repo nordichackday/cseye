@@ -36,4 +36,14 @@ class LineParserTests {
         println msg
         println msg.split("_").drop(2).join("_").toLowerCase()
     }
+
+    @Test
+    public void testParseUsers(){
+        String line = " 10:40:04: \"Tony<16><BOT><>\" connected, address \"\""
+        def user = line.trim().split("\"")
+        def user2 =  user[1].replaceAll("<"," ").replaceAll(">"," ").split(" ")
+        println user2[0]
+        println user2[1]
+
+    }
 }
