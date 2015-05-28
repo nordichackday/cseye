@@ -39,7 +39,7 @@ var app = {
   },
   getData: function () {
     $.ajax({
-      url: 'http://cseye.dev/response.json',
+      url: 'http://localhost/cs-eye/cseye/groovy-parser/src/main/resources/response.json',
       method: 'GET',
       dataType: 'json',
       success: function (data) {
@@ -47,9 +47,37 @@ var app = {
       }
     });
   },
-  printDataWrapper: function () {
-    app.printPlayerTable();
-    app.printRoundStatistics();
+  printDataWrapper: function (data) {
+    app.printPlayerTable(data);
+    //app.printRoundStatistics();
+  },
+  printPlayerTable: function(data) {
+    var table = '';
+    _.each(data.teams, function(team) {
+      _.each(team.players, function(player) {
+        table += '<tr><td>' + player.name + '</td>';
+        table += '<td>' + player.kills + '</td>';
+        table += '<td>' + player.assists + '</td>';
+        table += '<td>' + player.deaths + '</td>';
+        table += '<td>';
+        if(player.deaths) {
+          table += Math.round(player.kills / player.deaths * 100) / 100;
+        }
+        table += '</td>';
+        table += '<td data-order="';
+        if(player.kills) {
+          table += Math.round(player.headshots / player.kills * 100);
+        }
+        table += '">';
+        if(player.kills) {
+          table += Math.round(player.headshots / player.kills * 100) / 1 ;
+        }
+        table += ' %</td>';
+        table += '<td>' + player.points + '</td></tr>';
+      });
+    });
+    $('.player_table_container table tbody').html(table);
+    app.initSortTable();
   },
   initSortTable: function () {
     var paging = false;
@@ -82,7 +110,7 @@ var app = {
     app.projectName = '';
     app.path = '';
     app.initBars();
-    app.initSortTable();
+    app.getData();
   }
 }
 
