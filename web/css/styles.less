@@ -8,10 +8,11 @@
   }
 
   h3 {
-    font-family: 'Open Sans';
-    font-size: 22px;
+    font-family: 'Amatic SC';
+    font-size: 50px;
+    letter-spacing: 0.05em;
     margin-top: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
   }
   .heading_container {
     background-color: #000;
@@ -37,11 +38,22 @@
     margin: auto auto;
     width: 95%;
     .game_statistics {
-      height: 150px;
-      vertical-align: middle;
+      height: 120px;
       .round_score_container {
         float: left;
         width: 10%;
+        .inner {
+          padding: 0 5px;
+          border: 0;
+          background: #fff;
+        }
+        .score {
+          font-family: georgia;
+          font-size: 20px;
+          height: 40px;
+          line-height: 35px;
+          vertical-align: middle;
+        }
       }
       .round_statistics { 
         float: right;
@@ -52,9 +64,9 @@
           line-height: 30px;
           width: 100/30%;
         }
-        .line {
-          border: 4px solid #000;
-        }
+      }
+      .line {
+        border: 4px solid #000;
       }
     }
     .left_container {
@@ -101,6 +113,8 @@
     }
     th,
     td {
+      font-family: arial;
+      font-size: 14px;
       padding: 5px;
     }
     thead {
