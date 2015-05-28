@@ -46,4 +46,13 @@ class LineParserTests {
         println user2[1]
 
     }
+
+    @Test
+    public void testChat(){
+        String line = "\u000002/06/2015 - 10:59:22: \"Zunnu<3><STEAM_1:0:42115274><TERRORIST>\" say \"!r\""
+        println line.substring(line.indexOf("say")).split("\"")
+
+        line = "12:31:29: \"Jape1G<18><STEAM_1:0:36449907><TERRORIST>\" say_team \"VITTU TOI VARI\""
+        println line.substring(line.indexOf("say")).split("\"")
+    }
 }

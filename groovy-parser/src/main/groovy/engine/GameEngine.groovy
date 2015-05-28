@@ -18,10 +18,13 @@ class GameEngine {
     public void addLine(String line) {
         def cleanLine = new String(line.getBytes("UTF-8"))
 
-
         // chat csay_all,  "say_team" " say " ,
-        if(cleanLine.contains("say_team") || cleanLine.contains("\" say \"")){
-            chat.messages.add(cleanLine)
+        if (cleanLine.contains("say_team") || cleanLine.contains("\" say \"")) {
+            def chats = line.substring(line.indexOf("say")).split("\"")
+            if (!chats[1].startsWith("!")) {
+                chat.messages.add(cleanLine)
+                println ">>>>>> " + cleanLine
+            }
         }
 
         // prepare for game to start
