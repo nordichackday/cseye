@@ -16,16 +16,14 @@ class WebAPI {
 
 		staticFileLocation("/public");
 
-		before(new Filter() {
-			@Override
+		before new Filter() {
 			void handle(Request request, Response response) throws Exception {
 				response.type("application/json");
 			}
-		});
+		};
 
 		get '/match/:matchId', new Route() {
 			Object handle(Request request, Response response) throws Exception {
-				response.type("application/json");
 				return getMatch(request.params(":matchId").toInteger())
 			}
 		}
