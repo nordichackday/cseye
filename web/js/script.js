@@ -37,6 +37,20 @@ var app = {
       $(this).attr('src', app.path + 'img/' + $(this).attr('data-src'));
     });
   },
+  getData: function () {
+    $.ajax({
+      url: 'http://cseye.dev/response.json',
+      method: 'GET',
+      dataType: 'json',
+      success: function (data) {
+        app.printDataWrapper(data);
+      }
+    });
+  },
+  printDataWrapper: function () {
+    app.printPlayerTable();
+    app.printRoundStatistics();
+  },
   initSortTable: function () {
     var paging = false;
     var searching = false;
