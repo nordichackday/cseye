@@ -1,0 +1,4 @@
+.DS_Store
+groovy-parser/.gradle
+groovy-parser/.idea
+groovy-parser/build/classes
