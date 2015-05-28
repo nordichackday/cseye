@@ -154,6 +154,74 @@
           "timestamp": "2015-01-17T10:39:17+02:00"
         }
       ]
+    },
+    {
+      "winner": 12121,
+      "loser": 45454,
+      "ct": 45454,
+      "t": 12121,
+      "start": "2015-01-17T10:38:37+02:00",
+      "end": "2015-01-17T10:40:02+02:00",
+      "endStatus": "target_bombed",
+      "events": [
+        {
+          "type": "frag",
+          "fragger": 1,
+          "fragged": 4,
+          "timestamp": "2015-01-17T10:39:17+02:00"
+        }
+      ]
+    },
+    {
+      "winner": 12121,
+      "loser": 45454,
+      "ct": 45454,
+      "t": 12121,
+      "start": "2015-01-17T10:38:37+02:00",
+      "end": "2015-01-17T10:40:02+02:00",
+      "endStatus": "target_bombed",
+      "events": [
+        {
+          "type": "frag",
+          "fragger": 1,
+          "fragged": 4,
+          "timestamp": "2015-01-17T10:39:17+02:00"
+        }
+      ]
+    },
+    {
+      "winner": 12121,
+      "loser": 45454,
+      "ct": 45454,
+      "t": 12121,
+      "start": "2015-01-17T10:38:37+02:00",
+      "end": "2015-01-17T10:40:02+02:00",
+      "endStatus": "target_bombed",
+      "events": [
+        {
+          "type": "frag",
+          "fragger": 1,
+          "fragged": 4,
+          "timestamp": "2015-01-17T10:39:17+02:00"
+        }
+      ]
+    },
+    {
+      "winner": 12121,
+      "loser": 45454,
+      "ct": 45454,
+      "t": 12121,
+      "start": "2015-01-17T10:38:37+02:00",
+      "end": "2015-01-17T10:40:02+02:00",
+      "endStatus": "target_bombed",
+      "events": [
+        {
+          "type": "frag",
+          "fragger": 1,
+          "fragged": 4,
+          "timestamp": "2015-01-17T10:39:17+02:00"
+        }
+      ]
     }
   ]
 }

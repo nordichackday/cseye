@@ -38,20 +38,22 @@ var app = {
     });
   },
   getData: function () {
-      $.ajax({
-        url: 'http://cseye.dev/response.json',
-        method: 'GET',
-        dataType: 'json',
-        success: function (data) {
-          app.printDataWrapper(data);
-        }
-      });
-    }, (app.timeOut * 1000)) ;
+    $.ajax({
+      url: 'http://cseye.dev/response.json',
+      method: 'GET',
+      dataType: 'json',
+      success: function (data) {
+        app.printDataWrapper(data);
+      }
+    });
   },
   setDataInterval: function () {
-    window.setInterval(function(){
+    window.setInterval(function () {
+      $('.timer .seconds').text(app.timeOut);
+      clearInterval(app.timer);
+      app.initTimer();
       app.getData();
-    });
+    }, app.timeOut * 1000);
   },
   printDataWrapper: function (data) {
     app.printPlayerTable(data);
@@ -77,7 +79,7 @@ var app = {
         }
         table += '">';
         if(player.kills) {
-          table += Math.round(player.headshots / player.kills * 100) / 1 ;
+          table += Math.round(player.headshots / player.kills * 100) / 1;
         }
         table += ' %</td>';
         table += '<td>' + player.points + '</td></tr>';
@@ -91,7 +93,7 @@ var app = {
     $('.counter_terrorists .value').html(data.teams[1].score)
   },
   printRoundStatistics: function (data) {
-    $('.round_statistics .terrorists, .round_statistics .terrorists').empty();
+    $('.round_statistics .terrorists, .round_statistics .counter_terrorists').empty();
     $.each(data.rounds, function (i, el) {
       // Check if terrorist win.
       if (el.winner == el.t) {
@@ -136,13 +138,22 @@ var app = {
     $('.values_bar').width($('.bar_wrapper').width())
     $('span.bar').peity('bar')
   },
+  initTimer: function () {
+    var sec = $('.timer .seconds').text();
+    app.timer = setInterval(function () {
+      $('.timer .seconds').text(--sec);
+      // if (sec == 0) {
+        // clearInterval(app.timer);
+      // } 
+    }, 1000)
+  },
   init: function () {
-    app.timeOut = 5;
-    app.projectName = '';
+    app.timeOut = 10;
     app.path = '';
     app.initBars();
     app.getData();
     app.setDataInterval();
+    app.initTimer();
   }
 }
 
