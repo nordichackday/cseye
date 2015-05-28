@@ -1,6 +1,7 @@
 package endpoint
 
-import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
 import spark.Filter
 import spark.Request
 import spark.Response
@@ -28,13 +29,10 @@ class WebAPI {
 	}
 
 	public Object getMatch(int matchId) {
-		def builder = new JsonBuilder()
-
-		def root = builder {
-			id matchId
-		}
-
-		builder.toString();
+		def inputFile = this.getClass().getResource("/response.json")
+		def json = new JsonSlurper().parseText(inputFile.text)
+		json.id = matchId;
+		return JsonOutput.toJson(json)
 	}
 
 

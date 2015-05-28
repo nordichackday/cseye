@@ -1,0 +1,101 @@
+{
+	"id": 123,
+	"start": "2015-01-17T10:38:37+02:00",
+	"teams": [
+		{
+			"id": 45454,
+			"name": "Hackers",
+			"tag": "hack",
+			"score": 2,
+			"side": "ct",
+			"players": [
+				{
+					"name": "Kalle",
+					"id": 1,
+					"steamId": "1:0:3449634",
+					"kills": 2,
+					"deaths": 0,
+					"assists": 1,
+					"points": 7,
+					"headshots": 0,
+					"defuse": 0,
+					"bomb": 0
+				},
+				{
+					"name": "Emma",
+					"id": 6,
+					"steamId": "1:0:546254",
+					"kills": 1,
+					"deaths": 2,
+					"assists": 0,
+					"points": 2,
+					"headshots": 1,
+					"defuse": 1,
+					"bomb": 0
+				}
+			]
+		},
+		{
+			"id": 12121,
+			"name": "Bots",
+			"tag": "bot",
+			"score": 0,
+			"side": "t",
+			"players": [
+				{
+					"name": "Emil",
+					"id": 9,
+					"steamId": "1:0:5445345",
+					"kills": 1,
+					"deaths": 1,
+					"assists": 1,
+					"points": 3,
+					"headshots": 0,
+					"defuse": 0,
+					"bomb": 0
+				},
+				{
+					"name": "Olof",
+					"id": 4,
+					"steamId": "1:0:8776451",
+					"kills": 1,
+					"deaths": 2,
+					"assists": 0,
+					"points": 2,
+					"headshots": 1,
+					"defuse": 0,
+					"bomb": 1
+				}
+			]
+		}
+	],
+	"rounds": [
+		{
+			"winner": 45454,
+			"loser": 12121,
+			"ct": 45454,
+			"t": 12121,
+			"start": "2015-01-17T10:38:37+02:00",
+			"end": "2015-01-17T10:40:02+02:00",
+			"endStatus": "defuse",
+			"events": [
+				{
+					"type": "frag",
+					"fragger": 1,
+					"fragged": 4,
+					"timestamp": "2015-01-17T10:39:17+02:00"
+				}
+			]
+		},
+		{
+			"ct": 45454,
+			"t": 12121,
+			"start": "2015-01-17T10:40:07+02:00",
+			"events": [
+				{
+
+				}
+			]
+		}
+	]
+}
