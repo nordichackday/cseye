@@ -24,20 +24,39 @@
       font-weight: bold;
       text-align: center;
       .beta_logo {
-        width: auto;
         background-color: transparent;
-        vertical-align: middle;
-        position: absolute;
-        width: 130px;
         margin-left: 20px;
+        position: absolute;
+        vertical-align: middle;
+        width: 130px;
       }
     }
   }
 
   .content_container {
-    background-color: #000;
     margin: auto auto;
     width: 95%;
+    .game_statistics {
+      height: 150px;
+      vertical-align: middle;
+      .round_score_container {
+        float: left;
+        width: 10%;
+      }
+      .round_statistics { 
+        float: right;
+        width: 90%;
+        .result {
+          display: inline-block;
+          height: 30px;
+          line-height: 30px;
+          width: 100/30%;
+        }
+        .line {
+          border: 4px solid #000;
+        }
+      }
+    }
     .left_container {
       float: left;
       width: 49%;
