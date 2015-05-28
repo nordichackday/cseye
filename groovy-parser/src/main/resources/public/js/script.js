@@ -38,14 +38,17 @@ var app = {
     });
   },
   getData: function () {
-    $.ajax({
-      url: 'http://cseye.dev/response.json',
-      method: 'GET',
-      dataType: 'json',
-      success: function (data) {
-        app.printDataWrapper(data);
-      }
-    });
+    window.setTimeout(function(){
+      $.ajax({
+        url: 'http://cseye.dev/response.json',
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          app.printDataWrapper(data);
+        }
+      });
+    }, 5000)
+
   },
   printDataWrapper: function (data) {
     // app.printPlayerTable();
