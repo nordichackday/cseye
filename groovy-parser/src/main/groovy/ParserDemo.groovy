@@ -21,6 +21,18 @@ public class ParserDemo {
                 game.startLive()
             }
 
+            // User "10:40:04: "Tony<16><BOT><>" connected, address """
+            // if(cleanLine.contains(" connected, address ")){
+            //    println parseConnectedUser(line)
+            //}
+
+
+            // user changed the team " 10:40:04: "Tony<16><BOT>" switched from team <Unassigned> to <CT>"
+            if(cleanLine.contains("switched from team")){
+
+            }
+
+
             // notice given, check if actual game started
             if (game.isLive()) {
                 // game start
@@ -90,6 +102,15 @@ public class ParserDemo {
              it.startsWith("SFUI_Notice")
         }.replaceAll("\"", "")
         return msg.split("_").drop(2).join("_").toLowerCase()
+    }
+
+    private def parseConnectedUser(String line){
+        line = line.replaceAll("\n","")
+        println line
+        def user = line.trim().split("\"")
+        def user2 =  user[1].replaceAll("<"," ").replaceAll(">"," ").split(" ")
+        println user2
+        [user: user2[0], id: Integer.parseInt(user2[1])]
     }
 }
 

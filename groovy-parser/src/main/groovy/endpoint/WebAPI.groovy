@@ -1,5 +1,6 @@
 package endpoint
 
+import engine.GameEngine
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import spark.Filter
@@ -12,10 +13,9 @@ import static spark.Spark.*
 /** end point for the web interface */
 class WebAPI {
 
-	public WebAPI() {
 
-		staticFileLocation("/public");
-
+	public WebAPI(GameEngine engine) {
+			staticFileLocation("/public");
 		before(new Filter() {
 			@Override
 			void handle(Request request, Response response) throws Exception {
