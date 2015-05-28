@@ -17,6 +17,8 @@
   .heading_container {
     background-color: #000;
     padding: 10px 0;
+    position: relative;
+    z-index: 3;
     h1 {
       background-color: #000;
       color: #eee;
@@ -33,9 +35,18 @@
       }
     }
   }
+  .logo_container {
+    position: relative;
+    top: -70px;
+    z-index: 2;
+    margin: auto auto;
+    max-width: 700px;
+    .logo {
+    }
+  }
 
   .timer {
-    margin: 10px 0;
+    margin-top: -60px;
     text-align: center;
     font-family: georgia;
     color: #f00;
@@ -107,6 +118,17 @@
           width: 50%;
         }
       }
+    }
+  }
+
+  .chat_container {
+    height: 300px;
+    overflow-y: scroll;
+    .dead {
+      color: #f00;
+    }
+    .killer {
+      color: #0f0;
     }
   }
 
