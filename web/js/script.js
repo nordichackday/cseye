@@ -46,7 +46,7 @@ var app = {
         searchPlaceholder: 'Hae taulukosta',
         url: app.path + 'js/libs/English.json'
       },
-      order:[[2, 'asc']],
+      order:[[1, 'desc']],
       paging:paging,
       searching:searching
     });

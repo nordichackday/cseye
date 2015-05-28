@@ -6,15 +6,13 @@
   img {
     width: 100%;
   }
-  .video_container,
-  .map_container {
-    padding-top: 10px;
-  }
 
   h3 {
-    font-family: 'Open Sans';
-    font-size: 22px;
-    margin-bottom: 5px;
+    font-family: 'Amatic SC';
+    font-size: 50px;
+    letter-spacing: 0.05em;
+    margin-top: 20px;
+    margin-bottom: 15px;
   }
   .heading_container {
     background-color: #000;
@@ -27,20 +25,50 @@
       font-weight: bold;
       text-align: center;
       .beta_logo {
-        width: auto;
         background-color: transparent;
-        vertical-align: middle;
-        position: absolute;
-        width: 130px;
         margin-left: 20px;
+        position: absolute;
+        vertical-align: middle;
+        width: 130px;
       }
     }
   }
 
   .content_container {
-    background-color: #000;
     margin: auto auto;
     width: 95%;
+    .game_statistics {
+      height: 120px;
+      .round_score_container {
+        float: left;
+        width: 10%;
+        .inner {
+          padding: 0 5px;
+          border: 0;
+          background: #fff;
+        }
+        .score {
+          font-family: georgia;
+          font-size: 20px;
+          height: 40px;
+          line-height: 35px;
+          vertical-align: middle;
+        }
+      }
+      .round_statistics { 
+        float: right;
+        width: 90%;
+        .result {
+          display: inline-block;
+          height: 30px;
+          line-height: 30px;
+          width: 100/30%;
+        }
+      }
+      .line {
+        border: 4px solid #000;
+      }
+    }
     .left_container {
       float: left;
       width: 49%;
@@ -85,6 +113,8 @@
     }
     th,
     td {
+      font-family: arial;
+      font-size: 14px;
       padding: 5px;
     }
     thead {
