@@ -13,6 +13,9 @@ import static spark.Spark.*
 class WebAPI {
 
 	public WebAPI() {
+
+		staticFileLocation("/public");
+
 		before(new Filter() {
 			@Override
 			void handle(Request request, Response response) throws Exception {
