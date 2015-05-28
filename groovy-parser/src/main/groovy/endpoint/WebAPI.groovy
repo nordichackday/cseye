@@ -1,17 +1,27 @@
+package endpoint
+
 import groovy.json.JsonBuilder
+import spark.Filter
 import spark.Request
 import spark.Response
 import spark.Route
 
 import static spark.Spark.*
 
-class Service {
+/** end point for the web interface */
+class WebAPI {
 
+	public WebAPI() {
+		before(new Filter() {
+			@Override
+			void handle(Request request, Response response) throws Exception {
+				response.type("application/json");
+			}
+		});
 
-	public Service() {
-
-		get '/match/:matchId', "application/json", new Route() {
+		get '/match/:matchId', new Route() {
 			Object handle(Request request, Response response) throws Exception {
+				response.type("application/json");
 				return getMatch(request.params(":matchId").toInteger())
 			}
 		}
@@ -28,7 +38,5 @@ class Service {
 	}
 
 
-	public static void main(String[] args) {
-		new Service();
-	}
+
 }
