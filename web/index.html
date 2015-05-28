@@ -3,61 +3,81 @@
   <head>
     <meta charset="utf-8">
     <!-- Style sheets -->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400">
     <link href="css/styles.css" rel="stylesheet" />
   </head>
   <body>
     <div class="wrapper">
-      <!-- Left container -->
-      <div class="left_container container">
-        <div class="inner">
-          <div class="left_container">
-            <div class="video_container container">
-              <img src="img/video.png" alt="Game Video" class="game_video float_left" />
+      <div class="heading_container">
+        <h1>CSI EYE game statistics <img src="img/beta_stamp.png" alt="" class="beta_logo" /></h1>
+      </div>
+      <div class="divider"></div>
+
+      <div class="content_container">
+        <!-- Left container -->
+        <div class="left_container container">
+          <div class="inner">
+            <div class="left_container">
+              <div class="video_container container">
+                <h3>Stream</h3>
+                <img src="img/video.png" alt="Game Video" class="game_video float_left" />
+              </div>
             </div>
-          </div>
-          <div class="right_container">
-            <div class="map_container container">
-              <img src="img/inferno.jpg" alt="Game Map" class="game_map float_left" />
+            <div class="right_container">
+              <div class="map_container container">
+                <h3>Map</h3>
+                <img src="img/inferno.jpg" alt="Game Map" class="game_map float_left" />
+              </div>
             </div>
+            <div class="clear_both"></div>
           </div>
           <div class="clear_both"></div>
-          <div class="left_container">
-            <div class="bar_container">
-              <span class="bar">60,40</span>
+          <div class="divider"></div>
+          <div class="inner">
+            <div class="left_container">
+              <h3>Team statistics</h3>
+              <div class="bar_container">
+                <span class="bar">60,40</span>
+                <div class="values_bar"></div>
+              </div>
             </div>
+            <div class="clear_both"></div>
           </div>
         </div>
-      </div>
-      <!-- Right container -->
-      <div class="right_container container">
-        <div class="inner">
-          <div class="players_container">
-            <table class="dataTable">
-              <thead>
-                <tr>
-                  <th class="sorting"><span>Name</span></th>
-                  <th class="sorting"><span>Kills</span></th>
-                  <th class="sorting"><span>Deaths</span></th>
-                  <th class="sorting"><span>Headshots</span></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Player 1</td>
-                  <td>14</td>
-                  <td>12</td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <td>Player 2</td>
-                  <td>11</td>
-                  <td>18</td>
-                  <td>3</td>
-                </tr>
-              </tbody>
-            </table>
+        <!-- Right container -->
+        <div class="right_container container">
+          <div class="inner">
+            <div class="players_container">
+              <h3>Player statistics</h3>
+              <table class="dataTable">
+                <thead>
+                  <tr>
+                    <th class="sorting"><span>Name</span></th>
+                    <th class="sorting"><span>Kills</span></th>
+                    <th class="sorting"><span>Deaths</span></th>
+                    <th class="sorting"><span>Headshots</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Player 1</td>
+                    <td>14</td>
+                    <td>12</td>
+                    <td>2</td>
+                  </tr>
+                  <tr>
+                    <td>Player 2</td>
+                    <td>11</td>
+                    <td>18</td>
+                    <td>3</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="clear_both"></div>
           </div>
-        <div class="inner">
+        </div>
       </div>
     </div>
   </body>
