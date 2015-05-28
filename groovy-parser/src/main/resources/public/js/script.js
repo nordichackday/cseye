@@ -59,6 +59,7 @@ var app = {
     app.printPlayerTable(data);
     app.printRoundScoreStatistics(data);
     app.printRoundStatistics(data);
+    app.printMessages(data);
   },
   printPlayerTable: function(data) {
     var tbody = '';
@@ -70,16 +71,16 @@ var app = {
         tbody += '<td>' + player.deaths + '</td>';
         tbody += '<td>';
         if (player.deaths) {
-          tbody += Math.round(player.kills / player.deaths * 100) / 100;
+          tbody += app.roundNr(player.kills / player.deaths * 100, 1) / 100;
         }
         tbody += '</td>';
         tbody += '<td data-order="';
         if (player.kills) {
-          tbody += Math.round(player.headshots / player.kills * 100);
+          tbody += app.roundNr(player.headshots / player.kills * 100, 1);
         }
         tbody += '">';
         if (player.kills) {
-          tbody += Math.round(player.headshots / player.kills * 100) / 1;
+          tbody += app.roundNr(player.headshots / player.kills * 100, 1) / 1;
         }
         tbody += ' %</td>';
         tbody += '<td>' + player.points + '</td></tr>';
@@ -88,6 +89,17 @@ var app = {
     var table = '<table class="dataTable"><thead><tr><th class="sorting"><span>Name</span></th><th class="sorting"><span>Kills</span></th><th class="sorting"><span>Assists</span></th><th class="sorting"><span>Deaths</span></th><th class="sorting"><span>K/D Ratio</span></th><th class="sorting"><span>Headshot %</span></th><th class="sorting"><span>Score</span></th></tr></thead><tbody>' + tbody + '</tbody></table>';
     $('.player_table_container').html(table);
     app.initSortTable();
+  },
+  printMessages: function (data) {
+    $('.chat_container').empty();
+    $.each(data.rounds, function (i, round) {
+      $.each(round.events, function (i, event) {
+        if (event.type == 'frag') {
+          $('.chat_container').append('<div class="event">' + event.timestamp + ': <span class="killer">Player ' + event.fragger + '</span> killed <span class="dead">Player ' + event.fragged + '</span></div>');
+          
+        }
+      });
+    });
   },
   printRoundScoreStatistics: function (data) {
     $('.terrorists .value').html(data.teams[0].score)
@@ -126,6 +138,14 @@ var app = {
       searching:searching
     });
   },
+  initOwlCarousel: function () {
+    $('.owl-carousel').owlCarousel({
+      navigation : false,
+      slideSpeed : 300,
+      paginationSpeed : 400,
+      singleItem:true
+    });
+  },
   initBars: function () {
     $.fn.peity.defaults.bar = {
       delimiter: ",",
@@ -151,13 +171,13 @@ var app = {
   init: function () {
     app.timeOut = 10;
     app.path = '';
-    app.initBars();
+    // app.initBars();
+    app.initOwlCarousel();
     app.getData();
     app.setDataInterval();
     app.initTimer();
   }
 }
-
 
 $(document).ready(function () {
   app.init();
