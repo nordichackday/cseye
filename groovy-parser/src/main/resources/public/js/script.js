@@ -57,11 +57,11 @@ var app = {
     }, app.timeOut * 1000);
   },
   printDataWrapper: function (data) {
-    app.data = data;
     app.printPlayerTable(data);
     app.printWeaponsTable(data);
     app.printRoundScoreStatistics(data);
     app.printRoundStatistics(data);
+    app.data = data;
     app.printMessages(data);
   },
   isChanged: function (previous, current, attribute) {
