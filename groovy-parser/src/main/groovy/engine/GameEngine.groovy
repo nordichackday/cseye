@@ -18,10 +18,13 @@ class GameEngine {
     public void addLine(String line) {
         def cleanLine = new String(line.getBytes("UTF-8"))
 
-
         // chat csay_all,  "say_team" " say " ,
-        if(cleanLine.contains("say_team") || cleanLine.contains("\" say \"")){
-            chat.messages.add(cleanLine)
+        if (cleanLine.contains("say_team") || cleanLine.contains("\" say \"")) {
+            def chats = line.substring(line.indexOf("say")).split("\"")
+            if (!chats[1].startsWith("!")) {
+                chat.messages.add(cleanLine)
+                println ">>>>>> " + cleanLine
+            }
         }
 
         // prepare for game to start
@@ -67,11 +70,12 @@ class GameEngine {
             // check if round ended
             if (cleanLine.contains("SFUI_Notice")) {
                 game.endRound(getGameEndStatus(cleanLine))
+                println lineNumber + "Round ended " + line
 
                 // check if game ended
                 def scores = getScores(line)
                 if (scores.find({ team -> team.points == 16 })) {
-                    println lineNumber + " --- GAME ended with points " + cleanLine
+                    println lineNumber + " --- GAME ended with points " + scores
                     game.endGame()
                     games.add(game)
                 }
@@ -81,18 +85,18 @@ class GameEngine {
         lineNumber++
     }
 
-    private def getScores(String line) {
-        def scores = line.substring(line.indexOf("("))
-        def team1 = scores.substring(1, scores.indexOf(")")).split(" ")
-        def team2 = scores.substring(scores.lastIndexOf("(") + 1, scores.length() - 1).split(" ")
-        return [toScores(team1), toScores(team2)]
+    public def getScores(String line) {
+        def words = line.replaceAll("\"","").replaceAll("\\(","").replaceAll("\\)","").split(" ")
+        def teams = words.drop(words.findIndexOf {it.startsWith("SFUI_Notice")} + 1)
+
+        return [toScores(teams[0],teams[1]), toScores(teams[2],teams[3])]
     }
 
-    private def toScores(String[] scores) {
-        return [team: scores[0], points: Integer.parseInt(scores[1].replaceAll("\"", ""))]
+    public def toScores(team, scores) {
+        return [team: team, points: Integer.parseInt(scores.replaceAll("\"", ""))]
     }
 
-    private String getGameEndStatus(String line) {
+    public String getGameEndStatus(String line) {
         def words = line.replaceAll("\"", "").split(" ")
         def msg = words.find {
             it.startsWith("SFUI_Notice")
@@ -100,7 +104,7 @@ class GameEngine {
         return msg.split("_").drop(2).join("_").toLowerCase()
     }
 
-    private def parseConnectedUser(String line) {
+    public def parseConnectedUser(String line) {
         line = line.replaceAll("\n", "")
         println line
         def user = line.trim().split("\"")
