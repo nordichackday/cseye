@@ -65,7 +65,7 @@ var app = {
     var tbody = '';
     _.each(data.teams, function(team) {
       _.each(team.players, function(player) {
-        tbody += '<tr><td>' + player.name + '</td>';
+        tbody += '<tr class="' + team.side + '"><td>' + player.name + '</td>';
         tbody += '<td>' + player.kills + '</td>';
         tbody += '<td>' + player.assists + '</td>';
         tbody += '<td>' + player.deaths + '</td>';
@@ -89,7 +89,7 @@ var app = {
     var table = '<table class="dataTable"><thead><tr><th class="sorting"><span>Name</span></th><th class="sorting"><span>Kills</span></th><th class="sorting"><span>Assists</span></th><th class="sorting"><span>Deaths</span></th><th class="sorting"><span>K/D Ratio</span></th><th class="sorting"><span>Headshot %</span></th><th class="sorting"><span>Score</span></th></tr></thead><tbody>' + tbody + '</tbody></table>';
     if (app.table != table) {
       app.table = table;
-      $('.player_table_container').html(app.table).fadeOut(0).fadeIn(500);
+      $('.player_table_container').html(app.table).fadeOut(0).fadeIn(1000);
       app.initSortTable();
     }
   },
@@ -104,8 +104,14 @@ var app = {
     });
   },
   printRoundScoreStatistics: function (data) {
-    $('.terrorists .value').html(data.teams[0].score)
-    $('.counter_terrorists .value').html(data.teams[1].score)
+    if (data.teams[0].score != app.scoreT) {
+      app.scoreT = data.teams[0].score;
+      $('.terrorists .value').html(data.teams[0].score)
+    }
+    if (data.teams[1].score != app.scoreCT) {
+      app.scoreCT = data.teams[1].score;
+      $('.counter_terrorists .value').html(data.teams[1].score)
+    }
   },
   printRoundStatistics: function (data) {
     $('.round_statistics .terrorists, .round_statistics .counter_terrorists').empty();
@@ -171,7 +177,7 @@ var app = {
     }, 1000)
   },
   init: function () {
-    app.timeOut = 2;
+    app.timeOut = 0.1;
     app.path = '';
     // app.initBars();
     app.initOwlCarousel();

@@ -26,6 +26,19 @@
   p {
     margin: 10px 0;
   }
+
+  .terrorists {
+    background-color: rgba(0, 170, 189, 0.3);
+    .label {
+      padding-left: 5px;
+    }
+  }
+  .counter_terrorists {
+    background-color: rgba(117, 172, 0, 0.3);
+    .label {
+      padding-left: 5px;
+    }
+  }
   .heading_container {
     background-color: #000;
     padding: 25px 0 20px 0;
@@ -219,6 +232,12 @@
       }
       tr:nth-child(even) td {
         background-color: #fff;
+      }
+      tr.t td {
+        background-color: rgba(0, 170, 189, 0.3) !important;
+      }
+      tr.ct td {
+        background-color: rgba(117, 172, 0, 0.3) !important;
       }
     }
     .dataTables_info {
