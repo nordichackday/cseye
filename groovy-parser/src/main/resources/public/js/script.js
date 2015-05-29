@@ -52,17 +52,18 @@ var app = {
     window.setInterval(function () {
       $('.timer .seconds').text(app.timeOut);
       clearInterval(app.timer);
-      app.initTimer();
+      // app.initTimer();
       app.getData();
     }, app.timeOut * 1000);
   },
   printDataWrapper: function (data) {
     app.printPlayerTable(data);
+    app.printWeaponsTable(data);
     app.printRoundScoreStatistics(data);
     app.printRoundStatistics(data);
     app.printMessages(data);
   },
-  printPlayerTable: function(data) {
+  printPlayerTable: function (data) {
     var tbody = '';
     _.each(data.teams, function(team) {
       _.each(team.players, function(player) {
@@ -88,10 +89,33 @@ var app = {
       });
     });
     var table = '<table class="dataTable"><thead><tr><th class="sorting"><span>Name</span></th><th class="sorting"><span>Kills</span></th><th class="sorting"><span>Assists</span></th><th class="sorting"><span>Deaths</span></th><th class="sorting"><span>K/D Ratio</span></th><th class="sorting"><span>Headshot %</span></th><th class="sorting"><span>Score</span></th></tr></thead><tbody>' + tbody + '</tbody></table>';
-    if (app.table != table) {
-      app.table = table;
-      $('.player_table_container').html(app.table).fadeOut(0).fadeIn(1000);
-      app.initSortTable();
+    if (app.playerTable != table) {
+      app.playerTable = table;
+      $('.player_table_container').html(app.playerTable).fadeOut(0).fadeIn(1000);
+      app.initSortTable('.player_table_container');
+    }
+  },
+  printWeaponsTable: function (data) {
+    var tbody = '';
+    _.each(data.weapons, function (weapon) {
+        tbody += '<tr><td>' + weapon.name + '</td>';
+        tbody += '<td>' + weapon.kills + '</td>';
+        tbody += '<td data-order="';
+        if (weapon.kills) {
+          tbody += app.roundNr(weapon.headshots / weapon.kills * 100, 1);
+        }
+        tbody += '">';
+        if (weapon.kills) {
+          tbody += app.roundNr(weapon.headshots / weapon.kills * 100, 1) / 1;
+        }
+        tbody += ' %</td>';
+        tbody += '<td>' + weapon.bought + '</td>';
+    });
+    var table = '<table class="dataTable"><thead><tr><th class="sorting"><span>Name</span></th><th class="sorting"><span>Kills</span></th><th class="sorting"><span>Headshot %</span></th><th class="sorting"><span>Bought</span></th></tr></thead><tbody>' + tbody + '</tbody></table>';
+    if (app.weaponsTable != table) {
+      app.weaponsTable = table;
+      $('.weapon_table_container').html(app.weaponsTable).fadeOut(0).fadeIn(1000);
+      app.initSortTable('.weapon_table_container');
     }
   },
   printMessages: function (data) {
@@ -142,11 +166,11 @@ var app = {
       $('.round_statistics .counter_terrorists').html(app.roundStatsCT);
     }
   },
-  initSortTable: function () {
+  initSortTable: function (table) {
     var paging = false;
     var searching = false;
     // http://datatables.net/
-    app.data_table = $('.dataTable').DataTable({
+    $(table + ' table').DataTable({
       language: {
         searchPlaceholder: 'Hae taulukosta',
         url: app.path + 'js/libs/English.json'
@@ -193,7 +217,7 @@ var app = {
     app.initOwlCarousel();
     app.getData();
     app.setDataInterval();
-    app.initTimer();
+    // app.initTimer();
   }
 }
 
