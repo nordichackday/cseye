@@ -5,7 +5,7 @@ Project for visualizing CS:GO game statistics in a web interface.
 
 ## Team
 
-* Jaakko Ojalehto
-* Jussi Pöri
-* Kjetil Mehl
-* Teemo Tebest
+* Jaakko Ojalehto, Yle
+* Jussi Pöri, Yle
+* Kjetil Mehl, NRK
+* Teemo Tebest, Yle
