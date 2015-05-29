@@ -50,7 +50,7 @@ class WebAPI  {
 
 		game.startGame();
 		game.startRound(new Round(id: 1, started: true))
-		game.runningRound.events.add(new Message("JaakkoO", "goes skateboarding", "10:10"))
+		game.events.add(new Message("JaakkoO", "goes skateboarding", "10:10"))
 
 		return new JsonBuilder(game)
 	}

@@ -1,7 +1,5 @@
 package model
 
-import event.Event
-
 class Round {
 
 	def started = false
@@ -12,8 +10,6 @@ class Round {
 	String loser
 	String ct
 	String t
-	List<Event> events = new ArrayList<>()
-
 
 	@Override
 	String toString() {

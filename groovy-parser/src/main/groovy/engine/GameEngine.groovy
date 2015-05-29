@@ -23,9 +23,9 @@ class GameEngine {
         if (cleanLine.contains("say_team") || cleanLine.contains("\" say \"")) {
             def chats = line.substring(line.indexOf("say")).split("\"")
             if (!chats[1].startsWith("!")) {
-				game.runningRound.events.add(Message.parse(cleanLine))
-                println ">>>>>> " + cleanLine
-            }
+				events.add(Message.parse(cleanLine))
+				println ">>>>>> " + cleanLine
+			}
         }
 
         // prepare for game to start
