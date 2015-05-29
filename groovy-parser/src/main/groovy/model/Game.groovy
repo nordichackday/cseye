@@ -10,9 +10,12 @@ class Game {
 	List<Event> events = []
     List<Weapon> weapons = []
 
+
+
     private Team team1 = new Team(side: "t")
     private Team team2 = new Team(side: "ct")
 
+    List<Team> teams = [team1,team2]
 
     void startGame() { started = true }
 

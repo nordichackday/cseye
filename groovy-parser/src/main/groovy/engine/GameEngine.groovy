@@ -71,8 +71,7 @@ class GameEngine {
                 def words= cleanLine.split("\"")
                 Player killer =  game.findOrCreatePlayer(Player.parsePlayer(words[1]))
                 killer.kills += 1
-                if(words.find {it.contains("headshot")})
-                    killer.headshots += 1
+
 
                 Player death = game.findOrCreatePlayer(Player.parsePlayer(words[3]))
                 death.deaths += 1
@@ -80,7 +79,13 @@ class GameEngine {
                 Weapon weapon = game.findOrCreateWeapon(words[words.findIndexOf {it.contains("with")} + 1])
                 weapon.kills += 1
 
-				game.events.add(Frag.parse(killer, death, weapon.name, cleanLine))
+                if(words.find {it.contains("headshot")}){
+                    killer.headshots += 1
+                    weapon.headshots += 1
+                }
+
+                game.events.add(Frag.parse(killer, death, weapon.name, cleanLine))
+                game.events.add(Frag.parse(killer, death, cleanLine))
             }
 
             // check if round ended
