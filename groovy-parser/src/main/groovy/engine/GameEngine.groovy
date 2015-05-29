@@ -1,5 +1,6 @@
 package engine
 
+import event.Frag
 import model.Chat
 import model.Game
 import event.Message
@@ -24,7 +25,7 @@ class GameEngine {
         if (cleanLine.contains("say_team") || cleanLine.contains("\" say \"")) {
             def chats = line.substring(line.indexOf("say")).split("\"")
             if (!chats[1].startsWith("!")) {
-				events.add(Message.parse(cleanLine))
+				game.events.add(Message.parse(cleanLine))
 				println ">>>>>> " + cleanLine
 			}
         }
@@ -77,6 +78,8 @@ class GameEngine {
 
                 Weapon weapon = game.findOrCreateWeapon(words[words.findIndexOf {it.contains("with")} + 1])
                 weapon.kills += 1
+
+				game.events.add(Frag.parse(killer, death, cleanLine))
             }
 
             // check if round ended
