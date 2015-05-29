@@ -69,21 +69,16 @@ var app = {
       if (previous[attribute] !== current[attribute]) {
         return 'changed';
       }
-      return '';
     }
+    return '';
   },
   printPlayerTable: function (data) {
     var tbody = '';
-    _.each(data.teams, function (team) {
-      var oldTeamIndex;
-      _.each(app.data.teams, function (oldTeam, index) {
-        if (team.id === oldTeam.id) {
-          oldTeamIndex = index;
-        }
-      });
+    _.each(data.teams, function (team, teamIndex) {
       _.each(team.players, function (player) {
-        if (typeof oldTeamIndex !== 'undefined') {
-          var oldPlayer = _.find(app.data.teams[oldTeamIndex].players, function (oldPlayer) {
+        var oldPlayer;
+        if(app.data) {
+          oldPlayer = _.find(app.data.teams[teamIndex].players, function (oldPlayer) {
             return player.id === oldPlayer.id;
           });
         }
@@ -93,7 +88,7 @@ var app = {
         tbody += '<td class="' + app.isChanged(oldPlayer, player, 'deaths') + '">' + player.deaths + '</td>';
         tbody += '<td class="' + app.isChanged(oldPlayer, player, 'kills') + ' ' + app.isChanged(oldPlayer, player, 'deaths') + '">';
         if (player.deaths) {
-          tbody += app.roundNr(player.kills / player.deaths * 100, 1);
+          tbody += app.roundNr(player.kills / player.deaths, 1);
         }
         tbody += '</td>';
         tbody += '<td class="' + app.isChanged(oldPlayer, player, 'kills') + ' ' + app.isChanged(oldPlayer, player, 'headshots') + '" data-order="';
@@ -112,8 +107,8 @@ var app = {
     if (app.playerTable != table) {
       app.playerTable = table;
       $('.player_table_container').html(app.playerTable);
-      $('.player_table_container .changed').fadeOut(0).fadeIn(1000);
       app.initSortTable('.player_table_container');
+      $('.player_table_container .changed').fadeOut(0).fadeIn(1000).removeClass('changed');
     }
   },
   printWeaponsTable: function (data) {
@@ -234,7 +229,7 @@ var app = {
   },
   init: function () {
     app.timeOut = 0.1;
-    app.data = {};
+    app.data;
     app.path = '';
     // app.initBars();
     app.initOwlCarousel();
