@@ -61,12 +61,12 @@ var app = {
     app.printWeaponsTable(data);
     app.printRoundScoreStatistics(data);
     app.printRoundStatistics(data);
-    app.printMessages(data);
     app.data = data;
+    app.printMessages(data);
   },
-  isChanged: function(previous, current, attribute) {
-    if(typeof previous !== 'undefined' && typeof previous[attribute] !== 'undefined' && typeof current !== 'undefined' && typeof current[attribute] !== 'undefined') {
-      if(previous[attribute] !== current[attribute]) {
+  isChanged: function (previous, current, attribute) {
+    if (typeof previous !== 'undefined' && typeof previous[attribute] !== 'undefined' && typeof current !== 'undefined' && typeof current[attribute] !== 'undefined') {
+      if (previous[attribute] !== current[attribute]) {
         return 'changed';
       }
       return '';
@@ -74,17 +74,16 @@ var app = {
   },
   printPlayerTable: function (data) {
     var tbody = '';
-
-    _.each(data.teams, function(team) {
+    _.each(data.teams, function (team) {
       var oldTeamIndex;
-      _.each(app.data.teams, function(oldTeam, index) {
-        if(team.id === oldTeam.id) {
+      _.each(app.data.teams, function (oldTeam, index) {
+        if (team.id === oldTeam.id) {
           oldTeamIndex = index;
         }
       });
-      _.each(team.players, function(player) {
-        if(typeof oldTeamIndex !== 'undefined') {
-          var oldPlayer = _.find(app.data.teams[oldTeamIndex].players, function(oldPlayer) {
+      _.each(team.players, function (player) {
+        if (typeof oldTeamIndex !== 'undefined') {
+          var oldPlayer = _.find(app.data.teams[oldTeamIndex].players, function (oldPlayer) {
             return player.id === oldPlayer.id;
           });
         }
@@ -140,15 +139,45 @@ var app = {
       app.initSortTable('.weapon_table_container');
     }
   },
+  getUserData: function (user_id) {
+    var player_info = {
+      'name':'',
+      'side':''
+    }
+    $.each(app.data.teams, function (i, team) {
+      var side = false;
+      $.each(team.players, function (i, player) {
+        if (player.id == user_id) {
+          side = true;
+          player_info.name = player.name;
+        }
+      });
+      if (side == true) {
+        player_info.side = team.side;
+
+      }
+    });
+    return player_info;
+  },
   printMessages: function (data) {
-    $('.chat_container').empty();
+    var chat = '';
     $.each(data.rounds, function (i, round) {
       $.each(round.events, function (i, event) {
         if (event.type == 'frag') {
-          $('.chat_container').append('<div class="event"><span class="timestamp">' + moment(event.timestamp).format('HH:mm:ss') + ':</span> <span class="killer">Player ' + event.fragger + '</span> killed <span class="dead">Player ' + event.fragged + '</span></div>');
+          var fragger = app.getUserData(event.fragger);
+          var fragged = app.getUserData(event.fragged);
+          chat += '<div class="event"><span class="timestamp">' + moment(event.timestamp).format('HH:mm:ss') + ':</span> <span class="' + fragger.side + '">' + fragger.name + '</span> killed <span class="' + fragged.side + '">' + fragged.name + '</span></div>';
+        }
+        if (event.type == 'message') {
+          var player = app.getUserData(event.name);
+          chat += '<div class="event"><span class="timestamp">' + moment(event.timestamp).format('HH:mm:ss') + ':</span> <span class="' + player.side + '">' + player.name + '</span> said ' + event.text + '</div>';
         }
       });
     });
+    if (app.chatData != chat) {
+      app.chatData = chat;
+      $('.chat_container').html(app.chatData);
+    }
   },
   printRoundScoreStatistics: function (data) {
     if (data.teams[0].score != app.scoreT) {
@@ -204,10 +233,10 @@ var app = {
   },
   initOwlCarousel: function () {
     $('.owl-carousel').owlCarousel({
-      navigation : false,
-      slideSpeed : 300,
-      paginationSpeed : 400,
-      singleItem:true
+      navigation: false,
+      paginationSpeed: 400,
+      singleItem: true,
+      slideSpeed: 300
     });
   },
   // initBars: function () {
