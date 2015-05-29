@@ -21,8 +21,7 @@ class GameEngine {
 
 
     public void addLine(String line) {
-		def cleanLine = line.getBytes("UTF-8")
-        cleanLine = cleanLine[6..cleanLine.length-1]
+		    def cleanLine = new String(line.getBytes("UTF-8")).drop(7)
 
         // chat csay_all,  "say_team" " say " ,
         if (cleanLine.contains("say_team") || cleanLine.contains("\" say \"")) {
