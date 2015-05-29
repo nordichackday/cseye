@@ -76,11 +76,14 @@ class LineParserTests {
 
     @Test
     public void testPlayerStats(){
-         String line = " 12:31:05: \"b * DogC)<28><STEAM_1:1:29151561><CT>\" [-96 1370 75] killed \"Haalis<29><STEAM_1:0:40671441><TERRORIST>\" [59 1975 -21] with \"m4a1_silencer\""
+        // String line = " 12:31:05: \"b * DogC)<28><STEAM_1:1:29151561><CT>\" [-96 1370 75] killed \"Haalis<29><STEAM_1:0:40671441><TERRORIST>\" [59 1975 -21] with \"m4a1_silencer\""
+        String line = "12:34:04: \"TricksteR b\u001C* Demib\$b\$<32><STEAM_1:0:92045934><CT>\" [494 -510 -158] killed \"Cyrn<26><STEAM_1:0:38750314><TERRORIST>\" [258 -469 -94] with \"mag7\" (headshot)"
          def words= line.split("\"")
         println words
         Player killer =  Player.parsePlayer(words[1])
         killer.kills += 1
+        if(words.find {it.contains("headshot")})
+            killer.headshots += 1
 
         println killer
 
@@ -94,6 +97,7 @@ class LineParserTests {
 
 
         println new Weapon(name: words[words.findIndexOf {it.contains("with")} + 1], kills: 1)
+        println words.find {it.contains("headshot")}
 
 
         def guns = [id: 'm4a1_silencer', stats: ['headshot':0, kills:1]]

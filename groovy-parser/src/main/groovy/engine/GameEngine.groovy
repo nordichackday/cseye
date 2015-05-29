@@ -71,6 +71,8 @@ class GameEngine {
                 def words= cleanLine.split("\"")
                 Player killer =  game.findOrCreatePlayer(Player.parsePlayer(words[1]))
                 killer.kills += 1
+                if(words.find {it.contains("headshot")})
+                    killer.headshots += 1
 
                 Player death = game.findOrCreatePlayer(Player.parsePlayer(words[3]))
                 death.deaths += 1

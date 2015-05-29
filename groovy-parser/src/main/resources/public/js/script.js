@@ -188,19 +188,19 @@ var app = {
       singleItem:true
     });
   },
-  initBars: function () {
-    $.fn.peity.defaults.bar = {
-      delimiter: ",",
-      fill: ["#c0beb8", '#c6a71f'],
-      height: 200,
-      max: null,
-      min: 0,
-      padding: 0,
-      width: $('.bar_wrapper').width()
-    }
-    $('.values_bar').width($('.bar_wrapper').width())
-    $('span.bar').peity('bar')
-  },
+  // initBars: function () {
+  //   $.fn.peity.defaults.bar = {
+  //     delimiter: ",",
+  //     fill: ["#c0beb8", '#c6a71f'],
+  //     height: 200,
+  //     max: null,
+  //     min: 0,
+  //     padding: 0,
+  //     width: $('.bar_wrapper').width()
+  //   }
+  //   $('.values_bar').width($('.bar_wrapper').width())
+  //   $('span.bar').peity('bar')
+  // },
   initTimer: function () {
     var sec = $('.timer .seconds').text();
     app.timer = setInterval(function () {
