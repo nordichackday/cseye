@@ -213,11 +213,10 @@ var app = {
           roundStatsCT += '<span class="result"></span>';
         }
       }
-     
     });
     if (datafound === false) {
-      // roundStatsT += '<span class="result"></span>';
-      // roundStatsCT += '<span class="result"></span>';
+      roundStatsT += '<span class="result"></span>';
+      roundStatsCT += '<span class="result"></span>';
     }
     if (roundStatsT != app.roundStatsT) {
       app.roundStatsT = roundStatsT;
