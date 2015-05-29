@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+body {
+   background-color: #000;
+}
 @font-face {
   font-family: 'CS';
   src: url('fonts/cs_regular.ttf')  format('truetype');
@@ -28,15 +31,15 @@
   }
 
   .terrorists {
-    background-color: rgba(0, 170, 189, 0.3);
+    background-color: rgba(255, 207, 48, 1);
     .label {
-      padding-left: 5px;
+      color: #000;
     }
   }
   .counter_terrorists {
-    background-color: rgba(117, 172, 0, 0.3);
+    background-color: rgba(87, 155, 226, 1);
     .label {
-      padding-left: 5px;
+      color: #fff;
     }
   }
   .heading_container {
@@ -97,24 +100,30 @@
         .inner {
           padding: 0 5px;
           border: 0;
-          background: #fff;
         }
         .score {
           font-family: georgia;
           font-size: 20px;
           height: 45px;
-          line-height: 41px;
+          padding-left: 5px;
+          line-height: 45px;
           vertical-align: middle;
+          
         }
       }
       .round_statistics { 
         float: right;
         width: 90%;
         .result {
+          color: #fff;
           display: inline-block;
           height: 41px;
           line-height: 41px;
           width: 100/30%;
+          img {
+            padding-top: 5px;
+            float: left;
+          }
         }
       }
       .line {
@@ -234,10 +243,11 @@
         background-color: #fff;
       }
       tr.t td {
-        background-color: rgba(0, 170, 189, 0.3) !important;
+        background-color: rgba(255, 207, 48, 1) !important;
       }
       tr.ct td {
-        background-color: rgba(117, 172, 0, 0.3) !important;
+        background-color: rgba(87, 155, 226, 1) !important;
+        color: #fff;
       }
     }
     .dataTables_info {

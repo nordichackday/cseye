@@ -39,7 +39,8 @@ var app = {
   },
   getData: function () {
     $.ajax({
-      url: '/match/1',
+      url: 'http://cseye.dev/response.json',
+      // url: '/match/1',
       method: 'GET',
       dataType: 'json',
       success: function (data) {
@@ -177,7 +178,7 @@ var app = {
     }, 1000)
   },
   init: function () {
-    app.timeOut = 0.1;
+    app.timeOut = 100000;
     app.path = '';
     // app.initBars();
     app.initOwlCarousel();
