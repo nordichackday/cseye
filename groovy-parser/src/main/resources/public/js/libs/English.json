@@ -1,7 +1,7 @@
 {
   "sProcessing":   "Loading...",
   "sLengthMenu":   "Show _MENU_ rows",
-  "sZeroRecords":  "Product not found",
+  "sZeroRecords":  "No statistics available.",
   "sInfo":         "Näytetään rivit _START_–_END_ (yhteensä _TOTAL_)",
   "sInfoEmpty":    "Näytetään 0 - 0 (yhteensä 0)",
   "sInfoFiltered": "(suodatettu _MAX_ tuloksen joukosta)",
