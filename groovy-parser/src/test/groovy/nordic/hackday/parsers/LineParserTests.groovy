@@ -1,6 +1,8 @@
 package nordic.hackday.parsers
 
 import engine.GameEngine
+import model.Player
+import org.codehaus.groovy.syntax.Numbers
 import org.junit.Test
 
 /**
@@ -48,6 +50,8 @@ class LineParserTests {
 
        println new GameEngine().getScores(line3)
 
+        String line4 = "����RL 05/29/2015 - 10:35:02: Team \"CT\" triggered \"SFUI_Notice_CTs_Win\" (CT \"1\") (T \"0\")"
+        println new GameEngine().getScores(line4)
     }
 
     @Test
@@ -67,5 +71,23 @@ class LineParserTests {
 
         line = "12:31:29: \"Jape1G<18><STEAM_1:0:36449907><TERRORIST>\" say_team \"VITTU TOI VARI\""
         println line.substring(line.indexOf("say")).split("\"")
+    }
+
+    @Test
+    public void testPlayerStats(){
+         String line = " 12:31:05: \"b * DogC)<28><STEAM_1:1:29151561><CT>\" [-96 1370 75] killed \"Haalis<29><STEAM_1:0:40671441><TERRORIST>\" [59 1975 -21] with \"m4a1_silencer\""
+         def words= line.split("\"")
+        println words[1]
+        def killerInfo = words[1].split("<")
+        println killerInfo
+        Player player = new Player(name: killerInfo[0],id: Numbers.parseInteger(killerInfo[1].replaceAll(">","")))
+
+        println player
+
+        def players = [
+        [id: 'b * DogC)', kills:1,headshots:0],[id: 'Haalis',deaths:1]
+        ]
+        def guns = [id: 'm4a1_silencer', stats: ['headshot':0, kills:1]]
+
     }
 }

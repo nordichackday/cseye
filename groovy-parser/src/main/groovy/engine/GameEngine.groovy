@@ -34,9 +34,9 @@ class GameEngine {
         }
 
         // User "10:40:04: "Tony<16><BOT><>" connected, address """
-        // if(cleanLine.contains(" connected, address ")){
-        //    println parseConnectedUser(line)
-        //}
+         if(cleanLine.contains(" connected, address ")){
+            println parseConnectedUser(line)
+        }
 
         // user changed the team " 10:40:04: "Tony<16><BOT>" switched from team <Unassigned> to <CT>"
         if (cleanLine.contains("switched from team")) {
@@ -107,11 +107,9 @@ class GameEngine {
 
     public def parseConnectedUser(String line) {
         line = line.replaceAll("\n", "")
-        println line
         def user = line.trim().split("\"")
         def user2 = user[1].replaceAll("<", " ").replaceAll(">", " ").split(" ")
-        println user2
-        [user: user2[0], id: Integer.parseInt(user2[1])]
+        [user: user2[0], id: Integer.parseInt(user2[1]), scores: 0, kills: 0, deaths: 0]
     }
 }
 
