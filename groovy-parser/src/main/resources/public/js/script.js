@@ -87,8 +87,11 @@ var app = {
       });
     });
     var table = '<table class="dataTable"><thead><tr><th class="sorting"><span>Name</span></th><th class="sorting"><span>Kills</span></th><th class="sorting"><span>Assists</span></th><th class="sorting"><span>Deaths</span></th><th class="sorting"><span>K/D Ratio</span></th><th class="sorting"><span>Headshot %</span></th><th class="sorting"><span>Score</span></th></tr></thead><tbody>' + tbody + '</tbody></table>';
-    $('.player_table_container').html(table);
-    app.initSortTable();
+    if (app.table != table) {
+      app.table = table;
+      $('.player_table_container').html(app.table).fadeOut(0).fadeIn(500);
+      app.initSortTable();
+    }
   },
   printMessages: function (data) {
     $('.chat_container').empty();
@@ -168,7 +171,7 @@ var app = {
     }, 1000)
   },
   init: function () {
-    app.timeOut = 10;
+    app.timeOut = 2;
     app.path = '';
     // app.initBars();
     app.initOwlCarousel();
