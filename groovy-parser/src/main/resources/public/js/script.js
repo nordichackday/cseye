@@ -38,9 +38,14 @@ var app = {
     });
   },
   getData: function () {
+    if (location.href.match('cseye')) {
+      var url = 'http://cseye.dev/response.json';
+    }
+    else {
+      var url = '/match/1';
+    }
     $.ajax({
-      url: 'http://cseye.dev/response.json',
-      // url: '/match/1',
+      url: url,
       method: 'GET',
       dataType: 'json',
       success: function (data) {
@@ -236,6 +241,7 @@ var app = {
       navigation: false,
       paginationSpeed: 400,
       singleItem: true,
+      autoPlay: 3000,
       slideSpeed: 300
     });
   },
