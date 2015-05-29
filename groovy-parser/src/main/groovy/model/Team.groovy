@@ -8,5 +8,9 @@ class Team {
     int score
     List<Player> players = []
 
+    Player findPlayer(int id){
+        return players.find {it.id == id}
+    }
+
 
 }
