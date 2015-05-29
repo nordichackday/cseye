@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Amatic+SC:700">
+    <link href="css/libs/jquery-ui.min.css" rel="stylesheet" />
     <link href="css/libs/owl.carousel.css" rel="stylesheet" />
     <link href="css/libs/owl.theme.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
@@ -23,14 +24,12 @@
         <div class="game_statistics">
           <h3>Game statistics</h3>
           <div class="round_score_container">
-            <div class="inner">
-              <div class="terrorists score">
-                <span class="label">Terrorist: <span class="value"></span>
-              </div>
-              <div class="line"></div>
-              <div class="counter_terrorists score">
-                <span class="label">CTS: <span class="value"></span>
-              </div>
+            <div class="terrorists score">
+              <span class="label">Terrorist: <span class="value"></span>
+            </div>
+            <div class="line"></div>
+            <div class="counter_terrorists score">
+              <span class="label">CTS: <span class="value"></span>
             </div>
           </div>
           <div class="round_statistics">
@@ -63,10 +62,9 @@
         <!-- Right container -->
         <div class="right_container container">
           <div class="inner">
-            <div class="divider"></div>
             <h3>Player statistics</h3>
             <div class="player_table_container">
-              <table class="dataTable">
+              <table class="player_table">
                 <thead>
                   <tr>
                     <th class="sorting"><span>Name</span></th>
@@ -84,7 +82,7 @@
             <div class="divider"></div>
             <h3>Weapon statistics</h3>
             <div class="weapon_table_container">
-              <table class="">
+              <table class="weapon_table">
                 <thead>
                   <tr>
                     <th class="sorting"><span>Name</span></th>
@@ -92,44 +90,13 @@
                     <th class="sorting"><span>Headshots</span></th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>AK-47</td>
-                    <td>20</td>
-                    <td>80 %</td>
-                  </tr>
-                  <tr>
-                    <td>Negev</td>
-                    <td>12</td>
-                    <td>40 %</td>
-                  </tr>
-                  <tr>
-                    <td>M249 </td>
-                    <td>12</td>
-                    <td>40 %</td>
-                  </tr>
-                  <tr>
-                    <td>M2 Browning</td>
-                    <td>11</td>
-                    <td>17 %</td>
-                  </tr>
-                  <tr>
-                    <td>Scout</td>
-                    <td>11</td>
-                    <td>17 %</td>
-                  </tr>
-                  <tr>
-                    <td>SG 550</td>
-                    <td>11</td>
-                    <td>17 %</td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
-              <h4>Most effective weapon: AK-47</h4>
-              <img src="img/Ak47go.png" alt="Weapon" class="weapon_icon float_right" />
-              <p>“Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world. It is most deadly in short, controlled bursts of fire.”</p>
-              <p>
             </div>
+            <h4>Most effective weapon: AK-47</h4>
+            <img src="img/Ak47go.png" alt="Weapon" class="weapon_icon float_right" />
+            <p>“Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world. It is most deadly in short, controlled bursts of fire.”</p>
+            <p>
             <div class="divider"></div>
             <h3>Chats / messages</h3>
             <div class="chat_container"></div>
@@ -143,6 +110,7 @@
     <script src="js/libs/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="js/libs/jquery.peity.min.js" type="text/javascript"></script>
     <script src="js/libs/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="js/libs/jquery-ui.min.js" type="text/javascript"></script>
     <script src="js/libs/lodash.js" type="text/javascript"></script>
     <script src="js/libs/owl.carousel.min.js" type="text/javascript"></script>
     <script src="js/libs/moment.js" type="text/javascript"></script>

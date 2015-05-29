@@ -2,11 +2,15 @@ package model
 
 class Team {
 
-    String status
+    String side
     int id
     String name
-    int points
+    int score
     List<Player> players = []
+
+    Player findPlayer(int id){
+        return players.find {it.id == id}
+    }
 
 
 }

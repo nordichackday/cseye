@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+body {
+   background-color: #000;
+}
 @font-face {
   font-family: 'CS';
   src: url('fonts/cs_regular.ttf')  format('truetype');
@@ -15,28 +18,31 @@
     font-family: 'Amatic SC';
     font-size: 50px;
     letter-spacing: 0.05em;
-    margin-top: 20px;
     margin-bottom: 15px;
   }
   h4 {
     font-family: 'Open Sans';
-    margin-top: 20px;
-    font-size: 22px;
+    margin-top: 30px;
+    font-size: 24px;
+  }
+  td {
+    font-family: 'Open Sans';
   }
   p {
+    font-family: 'Open Sans';
     margin: 10px 0;
   }
 
   .terrorists {
-    background-color: rgba(0, 170, 189, 0.3);
+    background-color: rgba(255, 207, 48, 1);
     .label {
-      padding-left: 5px;
+      color: #000;
     }
   }
   .counter_terrorists {
-    background-color: rgba(117, 172, 0, 0.3);
+    background-color: rgba(87, 155, 226, 1);
     .label {
-      padding-left: 5px;
+      color: #fff;
     }
   }
   .heading_container {
@@ -94,27 +100,29 @@
       .round_score_container {
         float: left;
         width: 10%;
-        .inner {
-          padding: 0 5px;
-          border: 0;
-          background: #fff;
-        }
         .score {
           font-family: georgia;
           font-size: 20px;
           height: 45px;
-          line-height: 41px;
+          padding-left: 5px;
+          line-height: 45px;
           vertical-align: middle;
+          
         }
       }
       .round_statistics { 
         float: right;
         width: 90%;
         .result {
+          color: #fff;
           display: inline-block;
           height: 41px;
           line-height: 41px;
           width: 100/30%;
+          img {
+            padding-top: 5px;
+            float: left;
+          }
         }
       }
       .line {
@@ -158,7 +166,7 @@
 
   .chat_container {
     height: 300px;
-    font-family: arial;
+    font-family: 'Open Sans';
     overflow-y: scroll;
     .dead {
       color: #f00;
@@ -190,7 +198,7 @@
     }
     th,
     td {
-      font-family: arial;
+      font-family: 'Open Sans';
       font-size: 14px;
       padding: 5px;
     }
@@ -234,10 +242,11 @@
         background-color: #fff;
       }
       tr.t td {
-        background-color: rgba(0, 170, 189, 0.3) !important;
+        background-color: rgba(255, 207, 48, 1) !important;
       }
       tr.ct td {
-        background-color: rgba(117, 172, 0, 0.3) !important;
+        background-color: rgba(87, 155, 226, 1) !important;
+        color: #fff;
       }
     }
     .dataTables_info {
@@ -253,10 +262,12 @@
   /* Layout styles */
   .inner {
     border: 1px dotted #ccc;
-    padding: 0 20px;
+    padding: 10px 20px 0 20px;
     background-color: #f1f1f1;
   }
   .divider {
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
     margin-top: 30px;
   }
 

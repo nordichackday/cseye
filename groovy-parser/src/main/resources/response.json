@@ -100,13 +100,13 @@
 	],
 	"weapons": [
 		{
-			"weapon": "m4a1_silencer",
+			"name": "m4a1_silencer",
 			"kills": 3,
 			"headshots": 1,
 			"bought": 2
 		},
 		{
-			"weapon": "hkp2000",
+			"name": "hkp2000",
 			"kills": 1,
 			"headshots": 0,
 			"bought": 1

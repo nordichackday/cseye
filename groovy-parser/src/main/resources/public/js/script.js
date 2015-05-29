@@ -39,7 +39,8 @@ var app = {
   },
   getData: function () {
     $.ajax({
-      url: '/match/1',
+      url: 'http://cseye.dev/response.json',
+      // url: '/match/1',
       method: 'GET',
       dataType: 'json',
       success: function (data) {
@@ -51,15 +52,16 @@ var app = {
     window.setInterval(function () {
       $('.timer .seconds').text(app.timeOut);
       clearInterval(app.timer);
-      app.initTimer();
+      // app.initTimer();
       app.getData();
     }, app.timeOut * 1000);
   },
   printDataWrapper: function (data) {
     app.printPlayerTable(data);
-    //app.printRoundScoreStatistics(data);
-    //app.printRoundStatistics(data);
-    //app.printMessages(data);
+    app.printWeaponsTable(data);
+    app.printRoundScoreStatistics(data);
+    app.printRoundStatistics(data);
+    app.printMessages(data);
     app.data = data;
   },
   isChanged: function(previous, current, attribute) {
@@ -70,7 +72,7 @@ var app = {
       return '';
     }
   },
-  printPlayerTable: function(data) {
+  printPlayerTable: function (data) {
     var tbody = '';
 
     _.each(data.teams, function(team) {
@@ -108,11 +110,34 @@ var app = {
       });
     });
     var table = '<table class="dataTable"><thead><tr><th class="sorting"><span>Name</span></th><th class="sorting"><span>Kills</span></th><th class="sorting"><span>Assists</span></th><th class="sorting"><span>Deaths</span></th><th class="sorting"><span>K/D Ratio</span></th><th class="sorting"><span>Headshot %</span></th><th class="sorting"><span>Score</span></th></tr></thead><tbody>' + tbody + '</tbody></table>';
-    if (app.table != table) {
-      app.table = table;
-      $('.player_table_container').html(app.table);
-      $('.player_table_container .changed').fadeOut(0).fadeIn(5000);
-      app.initSortTable();
+    if (app.playerTable != table) {
+      app.playerTable = table;
+      $('.player_table_container').html(app.playerTable);
+      $('.player_table_container .changed').fadeOut(0).fadeIn(1000);
+      app.initSortTable('.player_table_container');
+    }
+  },
+  printWeaponsTable: function (data) {
+    var tbody = '';
+    _.each(data.weapons, function (weapon) {
+        tbody += '<tr><td>' + weapon.name + '</td>';
+        tbody += '<td>' + weapon.kills + '</td>';
+        tbody += '<td data-order="';
+        if (weapon.kills) {
+          tbody += app.roundNr(weapon.headshots / weapon.kills * 100, 1);
+        }
+        tbody += '">';
+        if (weapon.kills) {
+          tbody += app.roundNr(weapon.headshots / weapon.kills * 100, 1) / 1;
+        }
+        tbody += ' %</td>';
+        tbody += '<td>' + weapon.bought + '</td>';
+    });
+    var table = '<table class="dataTable"><thead><tr><th class="sorting"><span>Name</span></th><th class="sorting"><span>Kills</span></th><th class="sorting"><span>Headshot %</span></th><th class="sorting"><span>Bought</span></th></tr></thead><tbody>' + tbody + '</tbody></table>';
+    if (app.weaponsTable != table) {
+      app.weaponsTable = table;
+      $('.weapon_table_container').html(app.weaponsTable).fadeOut(0).fadeIn(1000);
+      app.initSortTable('.weapon_table_container');
     }
   },
   printMessages: function (data) {
@@ -136,29 +161,38 @@ var app = {
     }
   },
   printRoundStatistics: function (data) {
-    $('.round_statistics .terrorists, .round_statistics .counter_terrorists').empty();
+    var roundStatsT = '';
+    var roundStatsCT = '';
     $.each(data.rounds, function (i, el) {
       // Check if terrorist win.
       if (el.winner == el.t) {
-        $('.round_statistics .terrorists').append('<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>');
+        roundStatsT += '<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>';
       }
       else {
-        $('.round_statistics .terrorists').append('<span class="result"></span>');
+        roundStatsT += '<span class="result"></span>';
       }
       // Check if counter terrorist win.
       if (el.winner == el.ct) {
-        $('.round_statistics .counter_terrorists').append('<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>');
+        roundStatsCT += '<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>';
       }
       else {
-        $('.round_statistics .counter_terrorists').append('<span class="result"></span>');
+        roundStatsCT += '<span class="result"></span>';
       }
     });
+    if (roundStatsT != app.roundStatsT) {
+      app.roundStatsT = roundStatsT;
+      $('.round_statistics .terrorists').html(app.roundStatsT);
+    }
+    if (roundStatsCT != app.roundStatsCT) {
+      app.roundStatsCT = roundStatsCT;
+      $('.round_statistics .counter_terrorists').html(app.roundStatsCT);
+    }
   },
-  initSortTable: function () {
+  initSortTable: function (table) {
     var paging = false;
     var searching = false;
     // http://datatables.net/
-    app.data_table = $('.dataTable').DataTable({
+    $(table + ' table').DataTable({
       language: {
         searchPlaceholder: 'Hae taulukosta',
         url: app.path + 'js/libs/English.json'
@@ -176,19 +210,19 @@ var app = {
       singleItem:true
     });
   },
-  initBars: function () {
-    $.fn.peity.defaults.bar = {
-      delimiter: ",",
-      fill: ["#c0beb8", '#c6a71f'],
-      height: 200,
-      max: null,
-      min: 0,
-      padding: 0,
-      width: $('.bar_wrapper').width()
-    }
-    $('.values_bar').width($('.bar_wrapper').width())
-    $('span.bar').peity('bar')
-  },
+  // initBars: function () {
+  //   $.fn.peity.defaults.bar = {
+  //     delimiter: ",",
+  //     fill: ["#c0beb8", '#c6a71f'],
+  //     height: 200,
+  //     max: null,
+  //     min: 0,
+  //     padding: 0,
+  //     width: $('.bar_wrapper').width()
+  //   }
+  //   $('.values_bar').width($('.bar_wrapper').width())
+  //   $('span.bar').peity('bar')
+  // },
   initTimer: function () {
     var sec = $('.timer .seconds').text();
     app.timer = setInterval(function () {
@@ -206,7 +240,7 @@ var app = {
     app.initOwlCarousel();
     app.getData();
     app.setDataInterval();
-    app.initTimer();
+    // app.initTimer();
   }
 }
 
