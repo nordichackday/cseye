@@ -1,5 +1,7 @@
 package model
 
+import event.Event
+
 class Round {
 
 	def started = false

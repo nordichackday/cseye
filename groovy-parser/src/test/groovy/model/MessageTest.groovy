@@ -1,5 +1,6 @@
 package model
 
+import event.Message
 import org.junit.Test
 
 /**

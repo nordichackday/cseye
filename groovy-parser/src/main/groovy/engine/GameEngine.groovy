@@ -2,7 +2,7 @@ package engine
 
 import model.Chat
 import model.Game
-import model.Message
+import event.Message
 import model.Round
 
 
@@ -23,7 +23,7 @@ class GameEngine {
         if (cleanLine.contains("say_team") || cleanLine.contains("\" say \"")) {
             def chats = line.substring(line.indexOf("say")).split("\"")
             if (!chats[1].startsWith("!")) {
-                chat.messages.add(Message.parse(cleanLine))
+				game.runningRound.events.add(Message.parse(cleanLine))
                 println ">>>>>> " + cleanLine
             }
         }

@@ -2,9 +2,8 @@ package endpoint
 
 import engine.GameEngine
 import groovy.json.JsonBuilder
-import groovy.json.JsonOutput
-import groovy.json.JsonSlurper
 import model.Game
+import event.Message
 import model.Round
 import spark.Filter
 import spark.Request
@@ -51,6 +50,7 @@ class WebAPI  {
 
 		game.startGame();
 		game.startRound(new Round(id: 1, started: true))
+		game.runningRound.events.add(new Message("JaakkoO", "goes skateboarding", "10:10"))
 
 		return new JsonBuilder(game)
 	}
