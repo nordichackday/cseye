@@ -234,8 +234,8 @@
       "events": [
         {
           "type": "frag",
-          "fragger": 1,
-          "fragged": 4,
+          "fragger": 9,
+          "fragged": 6,
           "timestamp": "2015-01-17T10:39:17+02:00"
         }
       ]

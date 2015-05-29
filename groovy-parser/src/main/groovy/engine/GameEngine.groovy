@@ -1,5 +1,6 @@
 package engine
 
+import event.Bomb
 import event.Frag
 import model.Chat
 import model.Game
@@ -19,7 +20,8 @@ class GameEngine {
 
 
     public void addLine(String line) {
-        def cleanLine = new String(line.getBytes("UTF-8"))
+		def cleanLine = line.getBytes("UTF-8")
+        cleanLine = cleanLine[6..cleanLine.length-1]
 
         // chat csay_all,  "say_team" " say " ,
         if (cleanLine.contains("say_team") || cleanLine.contains("\" say \"")) {
@@ -31,26 +33,27 @@ class GameEngine {
         }
 
         // prepare for game to start
-        if (cleanLine.contains("LIVE!")) {
+        if (!game.live && cleanLine.contains("LIVE!")) {
+            game = new Game()
             game.startLive()
         }
 
-        // User "10:40:04: "Tony<16><BOT><>" connected, address """
-        // if(cleanLine.contains(" connected, address ")){
-        //   println parseConnectedUser(line)
-        //}
-
-        // user changed the team " 10:40:04: "Tony<16><BOT>" switched from team <Unassigned> to <CT>"
-        if (cleanLine.contains("switched from team")) {
-
+        // Purchased weapons
+         if(cleanLine.contains(" purchased ")){
+             handlePurchase(line)
         }
 
-
+        // user changed the team " 10:40:04: "Tony<16><BOT>" switched from team <Unassigned> to <CT>"
+        // if (cleanLine.contains("switched from team")) {
+        //
+        //}
+        // TODO handle switch team
 
         // notice given, check if actual game started
         if (game.isLive()) {
             // game start
             if (cleanLine.contains("World triggered \"Restart_Round_")) {
+
                 game.startGame()
                 println ":  --- GAME STARTED:" + cleanLine
                 round = 1
@@ -85,31 +88,46 @@ class GameEngine {
                 }
 
                 game.events.add(Frag.parse(killer, death, weapon.name, cleanLine))
-                game.events.add(Frag.parse(killer, death, cleanLine))
             }
 
             // check if round ended
             if (cleanLine.contains("SFUI_Notice")) {
                 game.endRound(getGameEndStatus(cleanLine))
                 println "Round ended " + line
+                // TODO ADD winner and loser
+
+
+                def scores = getScores(line)
+                scores.each {sc ->
+                    game.getTeam(sc.team).score = sc.points
+                }
 
                 // check if game ended
-                def scores = getScores(line)
                 if (scores.find({ team -> team.points == 16 })) {
                     println " --- GAME ended with points " + scores
                     game.endGame()
-                    games.add(game)
+
                 }
             }
+
+			if(cleanLine.contains("Planted_The_Bomb") || cleanLine.contains("Got_The_Bomb") || cleanLine.contains("Dropped_The_Bomb")) {
+				game.events.add(Bomb.parse(cleanLine))
+			}
         }
 
+    }
+
+    public void handlePurchase(String line){
+        def name = line.split("\"").last()
+        Weapon w =  game.findOrCreateWeapon(name)
+        w.bought += 1
     }
 
     public def getScores(String line) {
         def words = line.replaceAll("\"","").replaceAll("\\(","").replaceAll("\\)","").split(" ")
         def teams = words.drop(words.findIndexOf {it.startsWith("SFUI_Notice")} + 1)
 
-        return [toScores(teams[0],teams[1]), toScores(teams[2],teams[3])]
+        return [toScores(teams[0].toLowerCase(),teams[1]), toScores(teams[2].toLowerCase(),teams[3])]
     }
 
     public def toScores(team, scores) {
