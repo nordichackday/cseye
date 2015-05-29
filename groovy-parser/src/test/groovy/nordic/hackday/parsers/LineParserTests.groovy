@@ -107,7 +107,9 @@ class LineParserTests {
     @Test
     public void testPurchase(){
         String line = "12:34:33: \"Haalis<29><STEAM_1:0:40671441><CT>\" purchased \"incgrenade\""
-        println line.split("\"").last()
+
+
+        println line.split("purchased").last().replaceAll("\"","")
 
     }
 }
