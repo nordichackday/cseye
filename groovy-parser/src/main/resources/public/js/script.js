@@ -39,7 +39,7 @@ var app = {
   },
   getData: function () {
     $.ajax({
-      url: 'http://cseye.dev/response.json',
+      url: '/match/1',
       method: 'GET',
       dataType: 'json',
       success: function (data) {
