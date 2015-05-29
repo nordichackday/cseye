@@ -6,8 +6,11 @@ class Round {
     def id = -1
     String endStatus
 
-    def t
-    def ct
+    String winner
+    String loser
+    String ct
+    String t
+
 
     @Override
     String toString() {

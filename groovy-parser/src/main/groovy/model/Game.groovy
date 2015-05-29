@@ -6,8 +6,8 @@ class Game {
     private def live = false
     private List<Round> rounds = []
 
-    private Team team1 = new Team(status: "TERRORIST")
-    private Team team2 = new Team(status: "CT")
+    private Team team1 = new Team(side: "t")
+    private Team team2 = new Team(side: "ct")
 
 
 
@@ -30,6 +30,9 @@ class Game {
         if (round.started) {
             round.endStatus = status
             round.started = false
+            round.loser = ""
+            round.winner = ""
+
         }
     }
 
