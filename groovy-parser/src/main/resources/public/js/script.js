@@ -64,9 +64,9 @@ var app = {
     app.printMessages(data);
     app.data = data;
   },
-  isChanged: function(previous, current, attribute) {
-    if(typeof previous !== 'undefined' && typeof previous[attribute] !== 'undefined' && typeof current !== 'undefined' && typeof current[attribute] !== 'undefined') {
-      if(previous[attribute] !== current[attribute]) {
+  isChanged: function (previous, current, attribute) {
+    if (typeof previous !== 'undefined' && typeof previous[attribute] !== 'undefined' && typeof current !== 'undefined' && typeof current[attribute] !== 'undefined') {
+      if (previous[attribute] !== current[attribute]) {
         return 'changed';
       }
       return '';
@@ -74,17 +74,16 @@ var app = {
   },
   printPlayerTable: function (data) {
     var tbody = '';
-
-    _.each(data.teams, function(team) {
+    _.each(data.teams, function (team) {
       var oldTeamIndex;
-      _.each(app.data.teams, function(oldTeam, index) {
-        if(team.id === oldTeam.id) {
+      _.each(app.data.teams, function (oldTeam, index) {
+        if (team.id === oldTeam.id) {
           oldTeamIndex = index;
         }
       });
-      _.each(team.players, function(player) {
-        if(typeof oldTeamIndex !== 'undefined') {
-          var oldPlayer = _.find(app.data.teams[oldTeamIndex].players, function(oldPlayer) {
+      _.each(team.players, function (player) {
+        if (typeof oldTeamIndex !== 'undefined') {
+          var oldPlayer = _.find(app.data.teams[oldTeamIndex].players, function (oldPlayer) {
             return player.id === oldPlayer.id;
           });
         }
