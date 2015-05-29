@@ -20,7 +20,7 @@ class Message extends Event {
 		def nameRegex = /.*"(.*)<\d+>/
 		def matcher = ( chatLine =~ nameRegex )
 
-		def messageRegex = /say "(.*)"/
+		def messageRegex = /[say|say_team] "(.*)"/
 		def message = (chatLine =~ messageRegex)
 
 		return new Message(matcher[0][1], message[0][1], parseTime(chatLine))
