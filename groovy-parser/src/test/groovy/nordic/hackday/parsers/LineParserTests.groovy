@@ -14,7 +14,7 @@ class LineParserTests {
 
     @Test
     public void testParseSFUI_Notice_gameend(){
-        String line = "12:48:35: Team \"TERRORIST\" triggered \"SFUI_Notice_Terrorists_Win\" (CT \"10\") (T \"16\")"
+        String line = "����RL 05/29/2015 - 13:50:52: Team \"TERRORIST\" triggered \"SFUI_Notice_Terrorists_Win\" (CT \"0\") (T \"1\")"
         def scores = line.substring(line.indexOf("("))
         def team1 = scores.substring(1,scores.indexOf(")")).split(" ")
         def team2 = scores.substring(scores.lastIndexOf("(") + 1,scores.length() - 1).split(" ")
@@ -101,6 +101,13 @@ class LineParserTests {
 
 
         def guns = [id: 'm4a1_silencer', stats: ['headshot':0, kills:1]]
+
+    }
+
+    @Test
+    public void testPurchase(){
+        String line = "12:34:33: \"Haalis<29><STEAM_1:0:40671441><CT>\" purchased \"incgrenade\""
+        println line.split("\"").last()
 
     }
 }
