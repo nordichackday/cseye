@@ -115,23 +115,32 @@ var app = {
     }
   },
   printRoundStatistics: function (data) {
-    $('.round_statistics .terrorists, .round_statistics .counter_terrorists').empty();
+    var roundStatsT = '';
+    var roundStatsCT = '';
     $.each(data.rounds, function (i, el) {
       // Check if terrorist win.
       if (el.winner == el.t) {
-        $('.round_statistics .terrorists').append('<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>');
+        roundStatsT += '<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>';
       }
       else {
-        $('.round_statistics .terrorists').append('<span class="result"></span>');
+        roundStatsT += '<span class="result"></span>';
       }
       // Check if counter terrorist win.
       if (el.winner == el.ct) {
-        $('.round_statistics .counter_terrorists').append('<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>');
+        roundStatsCT += '<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>';
       }
       else {
-        $('.round_statistics .counter_terrorists').append('<span class="result"></span>');
+        roundStatsCT += '<span class="result"></span>';
       }
     });
+    if (roundStatsT != app.roundStatsT) {
+      app.roundStatsT = roundStatsT;
+      $('.round_statistics .terrorists').html(app.roundStatsT);
+    }
+    if (roundStatsCT != app.roundStatsCT) {
+      app.roundStatsCT = roundStatsCT;
+      $('.round_statistics .counter_terrorists').html(app.roundStatsCT);
+    }
   },
   initSortTable: function () {
     var paging = false;
@@ -178,7 +187,7 @@ var app = {
     }, 1000)
   },
   init: function () {
-    app.timeOut = 100000;
+    app.timeOut = 1;
     app.path = '';
     // app.initBars();
     app.initOwlCarousel();
