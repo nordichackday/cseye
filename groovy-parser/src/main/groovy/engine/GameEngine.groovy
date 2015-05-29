@@ -8,6 +8,7 @@ import event.Message
 import model.Player
 import model.Round
 import model.Weapon
+import spark.utils.StringUtils
 
 
 class GameEngine {
@@ -27,9 +28,9 @@ class GameEngine {
         if (cleanLine.contains("say_team") || cleanLine.contains("\" say \"")) {
             def chats = line.substring(line.indexOf("say")).split("\"")
             if (!chats[1].startsWith("!")) {
-				game.events.add(Message.parse(cleanLine))
-				println ">>>>>> " + cleanLine
-			}
+                game.events.add(Message.parse(cleanLine))
+                println ">>>>>> " + cleanLine
+            }
         }
 
         // prepare for game to start
@@ -39,8 +40,8 @@ class GameEngine {
         }
 
         // Purchased weapons
-         if(cleanLine.contains(" purchased ")){
-             handlePurchase(line)
+        if (cleanLine.contains(" purchased ")) {
+            handlePurchase(line)
         }
 
         // user changed the team " 10:40:04: "Tony<16><BOT>" switched from team <Unassigned> to <CT>"
@@ -67,22 +68,22 @@ class GameEngine {
         if (game.isGameStarted()) {
             if (cleanLine.contains("World triggered \"Round_Start\"")) {
                 game.startRound(new Round(id: round++, started: true))
-                println  ":Round start:" + cleanLine
+                println ":Round start:" + cleanLine
             }
 
-            if(cleanLine.contains(" killed ")){
-                def words= cleanLine.split("\"")
-                Player killer =  game.findOrCreatePlayer(Player.parsePlayer(words[1]))
+            if (cleanLine.contains(" killed ")) {
+                def words = cleanLine.split("\"")
+                Player killer = game.findOrCreatePlayer(Player.parsePlayer(words[1]))
                 killer.kills += 1
 
 
                 Player death = game.findOrCreatePlayer(Player.parsePlayer(words[3]))
                 death.deaths += 1
 
-                Weapon weapon = game.findOrCreateWeapon(words[words.findIndexOf {it.contains("with")} + 1])
+                Weapon weapon = game.findOrCreateWeapon(words[words.findIndexOf { it.contains("with") } + 1])
                 weapon.kills += 1
 
-                if(words.find {it.contains("headshot")}){
+                if (words.find { it.contains("headshot") }) {
                     killer.headshots += 1
                     weapon.headshots += 1
                 }
@@ -98,7 +99,7 @@ class GameEngine {
 
 
                 def scores = getScores(line)
-                scores.each {sc ->
+                scores.each { sc ->
                     game.getTeam(sc.team).score = sc.points
                 }
 
@@ -117,21 +118,30 @@ class GameEngine {
 
     }
 
-    public void handlePurchase(String line){
+    public void handlePurchase(String line) {
         def name = line.split("\"").last()
-        Weapon w =  game.findOrCreateWeapon(name)
-        w.bought += 1
+        if (StringUtils.isNotEmpty(name.trim())) {
+            Weapon w = game.findOrCreateWeapon(name)
+            w.bought += 1
+        }
     }
 
     public def getScores(String line) {
-        def words = line.replaceAll("\"","").replaceAll("\\(","").replaceAll("\\)","").split(" ")
-        def teams = words.drop(words.findIndexOf {it.startsWith("SFUI_Notice")} + 1)
+        def words = line.replaceAll("\"", "").replaceAll("\\(", "").replaceAll("\\)", "").split(" ")
+        def teams = words.drop(words.findIndexOf { it.startsWith("SFUI_Notice") } + 1)
 
-        return [toScores(teams[0].toLowerCase(),teams[1]), toScores(teams[2].toLowerCase(),teams[3])]
+        return [toScores(teams[0].toLowerCase(), teams[1]), toScores(teams[2].toLowerCase(), teams[3])]
     }
 
     public def toScores(team, scores) {
-        return [team: team, points: Integer.parseInt(scores.replaceAll("\"", ""))]
+        try {
+            scores = scores.replaceAll("\"", "")
+            scores = scores.trim()
+            return [team: team, points: Integer.parseInt(scores)]
+        } catch (Exception ex) {
+            System.err.println "Failing scores:'" + scores + "' "
+            return [team: team, points: 1]
+        }
     }
 
     public String getGameEndStatus(String line) {
