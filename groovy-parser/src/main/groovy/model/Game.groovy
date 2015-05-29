@@ -12,8 +12,8 @@ class Game {
 
 
 
-    private Team team1 = new Team(side: "t")
-    private Team team2 = new Team(side: "ct")
+    private Team team1 = new Team(id: 1,side: "t")
+    private Team team2 = new Team(id: 2,side: "ct")
 
     List<Team> teams = [team1,team2]
 
@@ -68,6 +68,10 @@ class Game {
             round.winner = ""
 
         }
+    }
+
+    Team getTeam(String side){
+        return teams.find {it.side.equals(side.toLowerCase())}
     }
 
     boolean isRoundRunning() {
