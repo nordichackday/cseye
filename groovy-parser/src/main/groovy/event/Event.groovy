@@ -18,6 +18,13 @@ abstract class Event {
 		return time[0][1]
 	}
 
+	public static parseId(chatLine) {
+		def idRegex = /.*<(\d+)>.*"/
+		def id = (chatLine =~ idRegex)
+
+		return id[0][1]
+	}
+
 
 
 

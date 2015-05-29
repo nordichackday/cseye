@@ -16,7 +16,7 @@ class BombTest {
 		def bomb = Bomb.parse(chatline)
 
 		assert bomb.text == "Dropped_The_Bomb"
-		assert bomb.player == 20
+		assert bomb.id == "20"
 		assert bomb.time == "01/17/2015 - 12:29:10"
 	}
 }

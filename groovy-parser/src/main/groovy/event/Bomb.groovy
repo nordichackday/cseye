@@ -6,25 +6,21 @@ package event
 class Bomb extends Event {
 
 	def text
-	def player
+	def id
 	def time
 
-	private Bomb(player, text, time) {
+	private Bomb(id, text, time) {
 		super("bomb")
 
 		this.time = time
-		this.player = player
+		this.id = id
 		this.text = text
 	}
 
 	static Bomb parse(chatLine) {
-
-		def idRegex = /.*<(\d+)>.*"/
-		def id = (chatLine =~ idRegex)
-
 		def messageRegex = /.* triggered "(.*)"/
 		def message = (chatLine =~ messageRegex)
 
-		return new Bomb(id[0][1].toInteger(), message[0][1], parseTime(chatLine))
+		return new Bomb(parseId(chatLine), message[0][1], parseTime(chatLine))
 	}
 }

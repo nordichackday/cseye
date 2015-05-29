@@ -5,25 +5,22 @@ package event
  */
 class Message extends Event {
 
-	String name
+	int id
 	String text
 	String time
 
-	private Message(name, text, time) {
+	private Message(id, text, time) {
 		super("message")
-		this.name = name;
-		this.text = text;
-		this.time = time;
+		this.id = id
+		this.text = text
+		this.time = time
 	}
 
 	public static Message parse(chatLine) {
-		def nameRegex = /.*"(.*)<\d+>/
-		def matcher = ( chatLine =~ nameRegex )
-
 		def messageRegex = /[say|say_team] "(.*)"/
 		def message = (chatLine =~ messageRegex)
 
-		return new Message(matcher[0][1], message[0][1], parseTime(chatLine))
+		return new Message(parseId(chatLine), message[0][1], parseTime(chatLine))
 	}
 
 }
