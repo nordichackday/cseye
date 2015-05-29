@@ -1,10 +1,13 @@
 package model
 
+import event.Event
+
 class Game {
 
     private def started = false
     private def live = false
     List<Round> rounds = []
+	List<Event> events = []
     List<Weapon> weapons = []
 
     private Team team1 = new Team(side: "t")

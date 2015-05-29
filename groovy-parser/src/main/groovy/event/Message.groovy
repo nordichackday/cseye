@@ -10,6 +10,7 @@ class Message extends Event {
 	String time
 
 	private Message(name, text, time) {
+		super("message")
 		this.name = name;
 		this.text = text;
 		this.time = time;
@@ -19,13 +20,10 @@ class Message extends Event {
 		def nameRegex = /.*"(.*)<\d+>/
 		def matcher = ( chatLine =~ nameRegex )
 
-		def timeRegex = /(.*): /
-		def time = (chatLine =~ timeRegex)
-
 		def messageRegex = /say "(.*)"/
 		def message = (chatLine =~ messageRegex)
 
-		return new Message(matcher[0][1], message[0][1], time[0][1])
+		return new Message(matcher[0][1], message[0][1], parseTime(chatLine))
 	}
 
 }

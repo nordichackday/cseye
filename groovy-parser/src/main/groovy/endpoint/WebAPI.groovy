@@ -1,9 +1,11 @@
 package endpoint
 
 import engine.GameEngine
+import event.Frag
 import groovy.json.JsonBuilder
 import model.Game
 import event.Message
+import model.Player
 import model.Round
 import spark.Filter
 import spark.Request
@@ -50,7 +52,8 @@ class WebAPI  {
 
 		game.startGame();
 		game.startRound(new Round(id: 1, started: true))
-		game.runningRound.events.add(new Message("JaakkoO", "goes skateboarding", "10:10"))
+		game.events.add(new Message("JaakkoO", "goes skateboarding", "10:10"))
+		game.events.add(new Frag(1, 2, "10:12"))
 
 		return new JsonBuilder(game)
 	}
