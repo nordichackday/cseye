@@ -262,7 +262,7 @@ var app = {
     }, 1000)
   },
   init: function () {
-    app.timeOut = 10000;
+    app.timeOut = 0.1;
     app.data = {};
     app.path = '';
     // app.initBars();
