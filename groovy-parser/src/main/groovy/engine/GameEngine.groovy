@@ -3,7 +3,9 @@ package engine
 import model.Chat
 import model.Game
 import event.Message
+import model.Player
 import model.Round
+import model.Weapon
 
 
 class GameEngine {
@@ -13,7 +15,6 @@ class GameEngine {
     def games = []
 
     int round = 1
-    int lineNumber = 1
 
 
     public void addLine(String line) {
@@ -43,12 +44,15 @@ class GameEngine {
 
         }
 
+
+
         // notice given, check if actual game started
         if (game.isLive()) {
             // game start
             if (cleanLine.contains("World triggered \"Restart_Round_")) {
                 game.startGame()
-                println lineNumber + ":  --- GAME STARTED:" + cleanLine
+                println ":  --- GAME STARTED:" + cleanLine
+                round = 1
             }
         }
         // if someone reset game
@@ -59,31 +63,37 @@ class GameEngine {
         if (game.isGameStarted()) {
             if (cleanLine.contains("World triggered \"Round_Start\"")) {
                 game.startRound(new Round(id: round++, started: true))
-                println lineNumber + ":Round start:" + cleanLine
+                println  ":Round start:" + cleanLine
             }
-            /*if (cleanLine.contains("World triggered \"Round_End\"")) {
-                if (game.isRoundRunning()) {
-                    game.endRound()
-                    println lineNumber + ":Round Ended:" + cleanLine
-                }
-            } */
+
+            if(cleanLine.contains(" killed ")){
+                def words= cleanLine.split("\"")
+                Player killer =  game.findOrCreatePlayer(Player.parsePlayer(words[1]))
+                killer.kills += 1
+
+
+                Player death = game.findOrCreatePlayer(Player.parsePlayer(words[3]))
+                death.deaths += 1
+
+                Weapon weapon = game.findOrCreateWeapon(words[words.findIndexOf {it.contains("with")} + 1])
+                weapon.kills += 1
+            }
 
             // check if round ended
             if (cleanLine.contains("SFUI_Notice")) {
                 game.endRound(getGameEndStatus(cleanLine))
-                println lineNumber + "Round ended " + line
+                println "Round ended " + line
 
                 // check if game ended
                 def scores = getScores(line)
                 if (scores.find({ team -> team.points == 16 })) {
-                    println lineNumber + " --- GAME ended with points " + scores
+                    println " --- GAME ended with points " + scores
                     game.endGame()
                     games.add(game)
                 }
             }
         }
 
-        lineNumber++
     }
 
     public def getScores(String line) {

@@ -2,6 +2,7 @@ package nordic.hackday.parsers
 
 import engine.GameEngine
 import model.Player
+import model.Weapon
 import org.codehaus.groovy.syntax.Numbers
 import org.junit.Test
 
@@ -77,16 +78,24 @@ class LineParserTests {
     public void testPlayerStats(){
          String line = " 12:31:05: \"b * DogC)<28><STEAM_1:1:29151561><CT>\" [-96 1370 75] killed \"Haalis<29><STEAM_1:0:40671441><TERRORIST>\" [59 1975 -21] with \"m4a1_silencer\""
          def words= line.split("\"")
-        println words[1]
-        def killerInfo = words[1].split("<")
-        println killerInfo
-        Player player = new Player(name: killerInfo[0],id: Numbers.parseInteger(killerInfo[1].replaceAll(">","")))
+        println words
+        Player killer =  Player.parsePlayer(words[1])
+        killer.kills += 1
 
-        println player
+        println killer
+
+        Player death = Player.parsePlayer(words[3])
+        death.deaths += 1
+        println death
 
         def players = [
-        [id: 'b * DogC)', kills:1,headshots:0],[id: 'Haalis',deaths:1]
+                killer,death
         ]
+
+
+        println new Weapon(name: words[words.findIndexOf {it.contains("with")} + 1], kills: 1)
+
+
         def guns = [id: 'm4a1_silencer', stats: ['headshot':0, kills:1]]
 
     }
