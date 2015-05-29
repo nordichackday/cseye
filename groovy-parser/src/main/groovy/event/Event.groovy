@@ -22,7 +22,7 @@ abstract class Event {
 		def idRegex = /.*<(\d+)>.*"/
 		def id = (chatLine =~ idRegex)
 
-		return id[0][1]
+		return id[0][1].toInteger()
 	}
 
 

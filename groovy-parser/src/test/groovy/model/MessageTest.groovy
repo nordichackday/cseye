@@ -14,7 +14,7 @@ class MessageTest {
 
 		def message = Message.parse(line)
 
-		assert message.id == "3"
+		assert message.id == 3
 		assert message.time == "01/17/2015 - 11:27:03"
 		assert message.text == "server fine?"
 	}
