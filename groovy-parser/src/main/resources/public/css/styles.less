@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0;
 }
+@font-face {
+  font-family: 'CS';
+  src: url('fonts/cs_regular.ttf')  format('truetype');
+}
 .wrapper {
   img {
     width: 100%;
@@ -14,24 +18,40 @@
     margin-top: 20px;
     margin-bottom: 15px;
   }
+  h4 {
+    font-family: 'Open Sans';
+    margin-top: 20px;
+    font-size: 22px;
+  }
+  p {
+    margin: 10px 0;
+  }
   .heading_container {
     background-color: #000;
-    padding: 10px 0;
+    padding: 25px 0 20px 0;
     position: relative;
     z-index: 3;
     h1 {
       background-color: #000;
       color: #eee;
-      font-family: 'Open Sans';
-      font-size: 40px;
-      font-weight: bold;
+      font-family: 'CS';
+      font-size: 60px;
+      font-weight: normal;
+      line-height: 40px;
       text-align: center;
+      .right_logo {
+        position: absolute;
+        left: 15px;
+        margin-top: 20px;
+        font-size: 100px;
+      }
       .beta_logo {
         background-color: transparent;
-        margin-left: 20px;
         position: absolute;
+        top: 5px;
+        right: 15px;
         vertical-align: middle;
-        width: 130px;
+        width: 180px;
       }
     }
   }
@@ -46,16 +66,18 @@
   }
 
   .timer {
+    color: #f00;
+    display: none;
+    font-family: georgia;
     margin-top: -60px;
     text-align: center;
-    font-family: georgia;
-    color: #f00;
   }
   .content_container {
     margin: auto auto;
     width: 95%;
     .game_statistics {
       height: 120px;
+      margin-bottom: 80px;
       .round_score_container {
         float: left;
         width: 10%;
@@ -202,6 +224,11 @@
     .dataTables_info {
       display: none;
     }
+  }
+  .weapon_icon {
+    float: right;
+    margin-right: 20px;
+    width: 100px;
   }
 
   /* Layout styles */
