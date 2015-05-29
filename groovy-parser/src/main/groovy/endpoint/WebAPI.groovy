@@ -1,6 +1,7 @@
 package endpoint
 
 import engine.GameEngine
+import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import spark.Filter
@@ -11,10 +12,13 @@ import spark.Route
 import static spark.Spark.*
 
 /** end point for the web interface */
-class WebAPI {
+class WebAPI  {
 
+	private GameEngine engine;
 
 	public WebAPI(GameEngine engine) {
+
+		this.engine = engine;
 
 		staticFileLocation("/public");
 		before new Filter() {
@@ -31,10 +35,12 @@ class WebAPI {
 	}
 
 	public Object getMatch(int matchId) {
-		def inputFile = this.getClass().getResource("/response.json")
-		def json = new JsonSlurper().parseText(inputFile.text)
-		json.id = matchId;
-		return JsonOutput.toJson(json)
+//		def inputFile = this.getClass().getResource("/response.json")
+//		def json = new JsonSlurper().parseText(inputFile.text)
+//		json.id = matchId;
+//		return JsonOutput.toJson(json)
+
+		return new JsonBuilder(engine)
 	}
 
 

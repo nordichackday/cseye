@@ -1,5 +1,6 @@
 package nordic.hackday.parsers
 
+import engine.GameEngine
 import org.junit.Test
 
 /**
@@ -25,16 +26,28 @@ class LineParserTests {
     @Test
     public void testParseSFUI_Notice_roundEndReason(){
         String line = "12:48:35: Team \"TERRORIST\" triggered \"SFUI_Notice_Terrorists_Win\" (CT \"10\") (T \"16\")"
-        println line.split(" ")
-        def msg = line.split(" ")[4].replaceAll("\"","")
-        println msg
-        println msg.split("_").drop(2).join("_").toLowerCase()
+        def words = line.replaceAll("\"","").replaceAll("\\(","").replaceAll("\\)","").split(" ")
+        println words.drop(words.findIndexOf {it.startsWith("SFUI_Notice")} + 1)
+
+        //def msg = line.split(" ")[4].replaceAll("\"","")
+        //println msg
+        //println msg.split("_").drop(2).join("_").toLowerCase()
 
         String line2 = " 12:47:24: Team \"CT\" triggered \"SFUI_Notice_Bomb_Defused\" (CT \"10\") (T \"15\")"
-        println line2.split(" ")
-         msg = line2.split(" ")[4].replaceAll("\"","")
-        println msg
-        println msg.split("_").drop(2).join("_").toLowerCase()
+        def words2 = line2.replaceAll("\"","").replaceAll("\\(","").replaceAll("\\)","").split(" ")
+        println words2.drop(words2.findIndexOf {it.startsWith("SFUI_Notice")} + 1)
+
+        // println line2.split(" ")
+        // msg = line2.split(" ")[4].replaceAll("\"","")
+        //println msg
+        //println msg.split("_").drop(2).join("_").toLowerCase()
+
+        String line3 = "����RL 05/29/2015 - 10:01:12: Team \"CT\" triggered \"SFUI_Notice_Target_Saved\" (CT \"1\") (T \"0\")"
+        def words3 = line3.replaceAll("\"","").replaceAll("\\(","").replaceAll("\\)","").split(" ")
+        println words3.drop(words3.findIndexOf {it.startsWith("SFUI_Notice")} + 1)
+
+       println new GameEngine().getScores(line3)
+
     }
 
     @Test
