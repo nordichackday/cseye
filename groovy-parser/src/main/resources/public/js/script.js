@@ -142,12 +142,13 @@ var app = {
   },
   printMessages: function (data) {
     $('.chat_container').empty();
-    $.each(data.rounds, function (i, round) {
-      $.each(round.events, function (i, event) {
-        if (event.type == 'frag') {
-          $('.chat_container').append('<div class="event"><span class="timestamp">' + moment(event.timestamp).format('HH:mm:ss') + ':</span> <span class="killer">Player ' + event.fragger + '</span> killed <span class="dead">Player ' + event.fragged + '</span></div>');
-        }
-      });
+    $.each(data.events, function (i, event) {
+      if (event.type == 'frag') {
+        $('.chat_container').append('<div class="event"><span class="timestamp">' + moment(event.timestamp).format('HH:mm:ss') + ':</span> <span class="killer">' + event.fragger + '</span> killed <span class="dead">Player ' + event.fragged + '</span></div>');
+      }
+      if (event.type == 'message') {
+        $('.chat_container').append('<div class="event"><span class="timestamp">' + moment(event.timestamp).format('HH:mm:ss') + ':</span> <span class="killer">' + event.name + '</span> said ' + event.text + '</div>');
+      }
     });
   },
   printRoundScoreStatistics: function (data) {
