@@ -140,14 +140,18 @@ var app = {
     }
   },
   printMessages: function (data) {
-    $('.chat_container').empty();
+    var chat = '';
     $.each(data.rounds, function (i, round) {
       $.each(round.events, function (i, event) {
         if (event.type == 'frag') {
-          $('.chat_container').append('<div class="event"><span class="timestamp">' + moment(event.timestamp).format('HH:mm:ss') + ':</span> <span class="killer">Player ' + event.fragger + '</span> killed <span class="dead">Player ' + event.fragged + '</span></div>');
+          chat += '<div class="event"><span class="timestamp">' + moment(event.timestamp).format('HH:mm:ss') + ':</span> <span class="killer">Player ' + event.fragger + '</span> killed <span class="dead">Player ' + event.fragged + '</span></div>';
         }
       });
     });
+    if (app.chatData != chat) {
+      app.chatData = chat;
+      $('.chat_container').html(app.chatData);
+    }
   },
   printRoundScoreStatistics: function (data) {
     if (data.teams[0].score != app.scoreT) {
