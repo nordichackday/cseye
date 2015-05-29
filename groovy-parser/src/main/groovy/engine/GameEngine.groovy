@@ -118,7 +118,7 @@ class GameEngine {
     }
 
     public void handlePurchase(String line) {
-        def name = line.split("\"").last()
+        def name = line.split("purchased").last().replaceAll("\"","").trim()
         if (StringUtils.isNotEmpty(name.trim())) {
             Weapon w = game.findOrCreateWeapon(name)
             w.bought += 1
