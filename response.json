@@ -1,258 +1,234 @@
 {
-  "id": 123,
-  "start": "2015-01-17T10:38:37+02:00",
-  "teams": [
-    {
-      "id": 45454,
-      "name": "Hackers",
-      "tag": "hack",
-      "score": 2,
-      "side": "ct",
-      "players": [
+    "events": [
         {
-          "name": "Kalle",
-          "id": 1,
-          "steamId": "1:0:3449634",
-          "kills": 2,
-          "deaths": 0,
-          "assists": 1,
-          "points": 7,
-          "headshots": 0,
-          "defuse": 0,
-          "bomb": 0
+            "type": "bomb",
+            "time": "05/29/2015 - 14:42:33",
+            "player": 7,
+            "text": "Got_The_Bomb"
         },
         {
-          "name": "Emma",
-          "id": 6,
-          "steamId": "1:0:546254",
-          "kills": 6,
-          "deaths": 2,
-          "assists": 0,
-          "points": 2,
-          "headshots": 1,
-          "defuse": 1,
-          "bomb": 0
-        }
-      ]
-    },
-    {
-      "id": 12121,
-      "name": "Bots",
-      "tag": "bot",
-      "score": 0,
-      "side": "t",
-      "players": [
-        {
-          "name": "Emil",
-          "id": 9,
-          "steamId": "1:0:5445345",
-          "kills": 10,
-          "deaths": 1,
-          "assists": 1,
-          "points": 3,
-          "headshots": 0,
-          "defuse": 0,
-          "bomb": 0
+            "type": "frag",
+            "weapon": "glock",
+            "time": "05/29/2015 - 14:43:00",
+            "fragger": 3,
+            "fragged": 10
         },
         {
-          "name": "Olof",
-          "id": 4,
-          "steamId": "1:0:8776451",
-          "kills": 1,
-          "deaths": 2,
-          "assists": 0,
-          "points": 2,
-          "headshots": 1,
-          "defuse": 0,
-          "bomb": 1
-        }
-      ]
-    }
-  ],
-  "rounds": [
-    {
-      "winner": 45454,
-      "loser": 12121,
-      "ct": 45454,
-      "t": 12121,
-      "start": "2015-01-17T10:38:37+02:00",
-      "end": "2015-01-17T10:40:02+02:00",
-      "endStatus": "terrorist_win",
-      "events": [
+            "type": "frag",
+            "weapon": "hkp2000",
+            "time": "05/29/2015 - 14:43:00",
+            "fragger": 6,
+            "fragged": 9
+        },
         {
-          "type": "frag",
-          "fragger": 1,
-          "fragged": 4,
-          "timestamp": "2015-01-17T10:39:17+02:00"
-        }
-      ]
-    },
-    {
-      "winner": 45454,
-      "loser": 12121,
-      "ct": 45454,
-      "t": 12121,
-      "start": "2015-01-17T10:38:37+02:00",
-      "end": "2015-01-17T10:40:02+02:00",
-      "endStatus": "cts_win",
-      "events": [
+            "type": "frag",
+            "weapon": "hkp2000",
+            "time": "05/29/2015 - 14:43:01",
+            "fragger": 2,
+            "fragged": 3
+        },
         {
-          "type": "frag",
-          "fragger": 1,
-          "fragged": 4,
-          "timestamp": "2015-01-17T10:39:17+02:00"
-        }
-      ]
-    },
-    {
-      "winner": 45454,
-      "loser": 12121,
-      "ct": 45454,
-      "t": 12121,
-      "start": "2015-01-17T10:38:37+02:00",
-      "end": "2015-01-17T10:40:02+02:00",
-      "endStatus": "target_saved",
-      "events": [
+            "type": "frag",
+            "weapon": "glock",
+            "time": "05/29/2015 - 14:43:02",
+            "fragger": 7,
+            "fragged": 6
+        },
         {
-          "type": "frag",
-          "fragger": 1,
-          "fragged": 4,
-          "timestamp": "2015-01-17T10:39:17+02:00"
-        }
-      ]
-    },
-    {
-      "winner": 12121,
-      "loser": 45454,
-      "ct": 45454,
-      "t": 12121,
-      "start": "2015-01-17T10:38:37+02:00",
-      "end": "2015-01-17T10:40:02+02:00",
-      "endStatus": "bomb_defused",
-      "events": [
+            "type": "bomb",
+            "time": "05/29/2015 - 14:43:10",
+            "player": 7,
+            "text": "Dropped_The_Bomb"
+        },
         {
-          "type": "frag",
-          "fragger": 1,
-          "fragged": 4,
-          "timestamp": "2015-01-17T10:39:17+02:00"
-        }
-      ]
-    },
-    {
-      "winner": 12121,
-      "loser": 45454,
-      "ct": 45454,
-      "t": 12121,
-      "start": "2015-01-17T10:38:37+02:00",
-      "end": "2015-01-17T10:40:02+02:00",
-      "endStatus": "target_bombed",
-      "events": [
+            "type": "frag",
+            "weapon": "hkp2000",
+            "time": "05/29/2015 - 14:43:10",
+            "fragger": 2,
+            "fragged": 7
+        },
         {
-          "type": "frag",
-          "fragger": 1,
-          "fragged": 4,
-          "timestamp": "2015-01-17T10:39:17+02:00"
-        }
-      ]
-    },
-    {
-      "winner": 12121,
-      "loser": 45454,
-      "ct": 45454,
-      "t": 12121,
-      "start": "2015-01-17T10:38:37+02:00",
-      "end": "2015-01-17T10:40:02+02:00",
-      "endStatus": "target_bombed",
-      "events": [
+            "type": "frag",
+            "weapon": "hkp2000",
+            "time": "05/29/2015 - 14:43:16",
+            "fragger": 8,
+            "fragged": 11
+        },
         {
-          "type": "frag",
-          "fragger": 1,
-          "fragged": 4,
-          "timestamp": "2015-01-17T10:39:17+02:00"
-        }
-      ]
-    },
-    {
-      "winner": 12121,
-      "loser": 45454,
-      "ct": 45454,
-      "t": 12121,
-      "start": "2015-01-17T10:38:37+02:00",
-      "end": "2015-01-17T10:40:02+02:00",
-      "endStatus": "target_bombed",
-      "events": [
+            "type": "frag",
+            "weapon": "glock",
+            "time": "05/29/2015 - 14:43:17",
+            "fragger": 4,
+            "fragged": 2
+        },
         {
-          "type": "frag",
-          "fragger": 1,
-          "fragged": 4,
-          "timestamp": "2015-01-17T10:39:17+02:00"
+            "type": "message",
+            "time": "05/29/2015 - 14:43:17",
+            "text": "kala",
+            "name": "Zeikko"
         }
-      ]
-    },
-    {
-      "winner": 45454,
-      "loser": 12121,
-      "ct": 45454,
-      "t": 12121,
-      "start": "2015-01-17T10:38:37+02:00",
-      "end": "2015-01-17T10:40:02+02:00",
-      "endStatus": "target_bombed",
-      "events": [
+    ],
+    "live": true,
+    "gameStarted": true,
+    "rounds": [
         {
-          "type": "frag",
-          "fragger": 1,
-          "fragged": 4,
-          "timestamp": "2015-01-17T10:39:17+02:00"
+            "endStatus": null,
+            "started": true,
+            "id": 1,
+            "loser": null,
+            "t": null,
+            "ct": null,
+            "winner": null
         }
-      ]
+    ],
+    "runningRound": {
+        "endStatus": null,
+        "started": true,
+        "id": 1,
+        "loser": null,
+        "t": null,
+        "ct": null,
+        "winner": null
     },
-    {
-      "winner": 12121,
-      "loser": 45454,
-      "ct": 45454,
-      "t": 12121,
-      "start": "2015-01-17T10:38:37+02:00",
-      "end": "2015-01-17T10:40:02+02:00",
-      "endStatus": "target_bombed",
-      "events": [
+    "teams": [
         {
-          "type": "frag",
-          "fragger": 1,
-          "fragged": 4,
-          "timestamp": "2015-01-17T10:39:17+02:00"
-        }
-      ]
-    },
-    {
-      "winner": 12121,
-      "loser": 45454,
-      "ct": 45454,
-      "t": 12121,
-      "start": "2015-01-17T10:38:37+02:00",
-      "end": "2015-01-17T10:40:02+02:00",
-      "endStatus": "target_bombed",
-      "events": [
+            "id": 1,
+            "score": 0,
+            "players": [
+                {
+                    "bomb": 0,
+                    "defuse": 0,
+                    "points": 0,
+                    "id": 3,
+                    "assists": 0,
+                    "deaths": 1,
+                    "name": "Tom",
+                    "side": "t",
+                    "headshots": 1,
+                    "kills": 1
+                },
+                {
+                    "bomb": 0,
+                    "defuse": 0,
+                    "points": 0,
+                    "id": 9,
+                    "assists": 0,
+                    "deaths": 1,
+                    "name": "Matt",
+                    "side": "t",
+                    "headshots": 0,
+                    "kills": 0
+                },
+                {
+                    "bomb": 0,
+                    "defuse": 0,
+                    "points": 0,
+                    "id": 7,
+                    "assists": 0,
+                    "deaths": 1,
+                    "name": "Tim",
+                    "side": "t",
+                    "headshots": 1,
+                    "kills": 1
+                },
+                {
+                    "bomb": 0,
+                    "defuse": 0,
+                    "points": 0,
+                    "id": 11,
+                    "assists": 0,
+                    "deaths": 1,
+                    "name": "Henry",
+                    "side": "t",
+                    "headshots": 0,
+                    "kills": 0
+                },
+                {
+                    "bomb": 0,
+                    "defuse": 0,
+                    "points": 0,
+                    "id": 4,
+                    "assists": 0,
+                    "deaths": 0,
+                    "name": "Yahn",
+                    "side": "t",
+                    "headshots": 0,
+                    "kills": 1
+                }
+            ],
+            "name": null,
+            "side": "t"
+        },
         {
-          "type": "frag",
-          "fragger": 9,
-          "fragged": 6,
-          "timestamp": "2015-01-17T10:39:17+02:00"
+            "id": 2,
+            "score": 0,
+            "players": [
+                {
+                    "bomb": 0,
+                    "defuse": 0,
+                    "points": 0,
+                    "id": 10,
+                    "assists": 0,
+                    "deaths": 1,
+                    "name": "Adam",
+                    "side": "ct",
+                    "headshots": 0,
+                    "kills": 0
+                },
+                {
+                    "bomb": 0,
+                    "defuse": 0,
+                    "points": 0,
+                    "id": 6,
+                    "assists": 0,
+                    "deaths": 1,
+                    "name": "Ethan",
+                    "side": "ct",
+                    "headshots": 0,
+                    "kills": 1
+                },
+                {
+                    "bomb": 0,
+                    "defuse": 0,
+                    "points": 0,
+                    "id": 2,
+                    "assists": 0,
+                    "deaths": 1,
+                    "name": "Zeikko",
+                    "side": "ct",
+                    "headshots": 0,
+                    "kills": 2
+                },
+                {
+                    "bomb": 0,
+                    "defuse": 0,
+                    "points": 0,
+                    "id": 8,
+                    "assists": 0,
+                    "deaths": 0,
+                    "name": "Dennis",
+                    "side": "ct",
+                    "headshots": 0,
+                    "kills": 1
+                }
+            ],
+            "name": null,
+            "side": "ct"
         }
-      ]
-    }
-  ],
-  "weapons": [
-    {
-      "name": "m4a1_silencer",
-      "kills": 3,
-      "headshots": 1,
-      "bought": 2
-    },
-    {
-      "name": "hkp2000",
-      "kills": 1,
-      "headshots": 0,
-      "bought": 1
-    }
-  ]
+    ],
+    "roundRunning": true,
+    "weapons": [
+        {
+            "bought": 0,
+            "name": "glock",
+            "headshots": 2,
+            "kills": 3
+        },
+        {
+            "bought": 0,
+            "name": "hkp2000",
+            "headshots": 0,
+            "kills": 4
+        }
+    ]
 }

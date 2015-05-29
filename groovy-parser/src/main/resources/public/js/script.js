@@ -161,18 +161,20 @@ var app = {
   },
   printMessages: function (data) {
     var chat = '';
-    $.each(data.rounds, function (i, round) {
-      $.each(round.events, function (i, event) {
+    $.each(data.events, function (i, event) {
         if (event.type == 'frag') {
           var fragger = app.getUserData(event.fragger);
           var fragged = app.getUserData(event.fragged);
-          chat += '<div class="event"><span class="timestamp">' + moment(event.timestamp).format('HH:mm:ss') + ':</span> <span class="' + fragger.side + '">' + fragger.name + '</span> killed <span class="' + fragged.side + '">' + fragged.name + '</span></div>';
+          chat += '<div class="event"><span class="timestamp">' + moment(event.time, 'd/m/YYYY - HH:mm:ss').format('HH:mm:ss') + ':</span> <span class="' + fragger.side + '">' + fragger.name + '</span> killed <span class="' + fragged.side + '">' + fragged.name + '</span></div>';
         }
-        if (event.type == 'message') {
-          var player = app.getUserData(event.name);
-          chat += '<div class="event"><span class="timestamp">' + moment(event.timestamp).format('HH:mm:ss') + ':</span> <span class="' + player.side + '">' + player.name + '</span> said ' + event.text + '</div>';
+        else if (event.type == 'message') {
+          var player = app.getUserData(event.id);
+          chat += '<div class="event"><span class="timestamp">' + moment(event.time, 'd/m/YYYY - HH:mm:ss').format('HH:mm:ss') + ':</span> <span class="' + player.side + '">' + player.name + '</span> said ' + event.text + '</div>';
         }
-      });
+        else if (event.type == 'bomb') {
+          var player = app.getUserData(event.id);
+          chat += '<div class="event"><span class="timestamp">' + moment(event.time, 'd/m/YYYY - HH:mm:ss').format('HH:mm:ss') + ':</span> <span class="' + player.side + '">' + player.name + '</span> ' + event.text.toLowerCase().replace(/_/g, ' ') + '</div>';
+        }
     });
     if (app.chatData != chat) {
       app.chatData = chat;
@@ -193,18 +195,24 @@ var app = {
     var roundStatsT = '';
     var roundStatsCT = '';
     $.each(data.rounds, function (i, el) {
-      // Check if terrorist win.
-      if (el.winner == el.t) {
-        roundStatsT += '<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>';
+      if (el.endStatus != null) {
+        // Check if terrorist win.
+        if (el.winner == el.t) {
+          roundStatsT += '<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>';
+        }
+        else {
+          roundStatsT += '<span class="result"></span>';
+        }
+        // Check if counter terrorist win.
+        if (el.winner == el.ct) {
+          roundStatsCT += '<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>';
+        }
+        else {
+          roundStatsCT += '<span class="result"></span>';
+        }
       }
       else {
         roundStatsT += '<span class="result"></span>';
-      }
-      // Check if counter terrorist win.
-      if (el.winner == el.ct) {
-        roundStatsCT += '<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>';
-      }
-      else {
         roundStatsCT += '<span class="result"></span>';
       }
     });
