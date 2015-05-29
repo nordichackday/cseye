@@ -1,5 +1,6 @@
 package engine
 
+import event.Bomb
 import event.Frag
 import model.Chat
 import model.Game
@@ -19,7 +20,8 @@ class GameEngine {
 
 
     public void addLine(String line) {
-        def cleanLine = new String(line.getBytes("UTF-8"))
+		def cleanLine = line.getBytes("UTF-8")
+        cleanLine = cleanLine[6..cleanLine.length-1]
 
         // chat csay_all,  "say_team" " say " ,
         if (cleanLine.contains("say_team") || cleanLine.contains("\" say \"")) {
@@ -107,6 +109,10 @@ class GameEngine {
 
                 }
             }
+
+			if(cleanLine.contains("Planted_The_Bomb") || cleanLine.contains("Got_The_Bomb") || cleanLine.contains("Dropped_The_Bomb")) {
+				game.events.add(Bomb.parse(cleanLine))
+			}
         }
 
     }
