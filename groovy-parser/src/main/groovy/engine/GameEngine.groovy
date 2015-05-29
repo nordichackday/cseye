@@ -78,7 +78,7 @@ class GameEngine {
                 Weapon weapon = game.findOrCreateWeapon(words[words.findIndexOf {it.contains("with")} + 1])
                 weapon.kills += 1
 
-				game.events.add(Frag.parse(killer, death, cleanLine))
+				game.events.add(Frag.parse(killer, death, weapon.name, cleanLine))
             }
 
             // check if round ended
