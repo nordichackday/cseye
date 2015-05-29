@@ -24,7 +24,7 @@ class UpdServer implements Runnable {
             try {
                 engine.addLine(line)
             } catch (Exception ex) {
-                println ex.getMessage()
+                println ex.printStackTrace()
             }
 
             String reply = "Client said: 'thanks'"

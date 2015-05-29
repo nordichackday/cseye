@@ -36,9 +36,9 @@ class GameEngine {
         }
 
         // User "10:40:04: "Tony<16><BOT><>" connected, address """
-         if(cleanLine.contains(" connected, address ")){
-            println parseConnectedUser(line)
-        }
+        // if(cleanLine.contains(" connected, address ")){
+        //   println parseConnectedUser(line)
+        //}
 
         // user changed the team " 10:40:04: "Tony<16><BOT>" switched from team <Unassigned> to <CT>"
         if (cleanLine.contains("switched from team")) {
@@ -71,7 +71,6 @@ class GameEngine {
                 def words= cleanLine.split("\"")
                 Player killer =  game.findOrCreatePlayer(Player.parsePlayer(words[1]))
                 killer.kills += 1
-
 
                 Player death = game.findOrCreatePlayer(Player.parsePlayer(words[3]))
                 death.deaths += 1
