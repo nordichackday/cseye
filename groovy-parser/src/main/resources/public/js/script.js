@@ -119,18 +119,18 @@ var app = {
   printWeaponsTable: function (data) {
     var tbody = '';
     _.each(data.weapons, function (weapon) {
-        tbody += '<tr><td>' + weapon.name + '</td>';
-        tbody += '<td>' + weapon.kills + '</td>';
-        tbody += '<td data-order="';
-        if (weapon.kills) {
-          tbody += app.roundNr(weapon.headshots / weapon.kills * 100, 1);
-        }
-        tbody += '">';
-        if (weapon.kills) {
-          tbody += app.roundNr(weapon.headshots / weapon.kills * 100, 1) / 1;
-        }
-        tbody += ' %</td>';
-        tbody += '<td>' + weapon.bought + '</td>';
+      tbody += '<tr><td>' + weapon.name + '</td>';
+      tbody += '<td>' + weapon.kills + '</td>';
+      tbody += '<td data-order="';
+      if (weapon.kills) {
+        tbody += app.roundNr(weapon.headshots / weapon.kills * 100, 1);
+      }
+      tbody += '">';
+      if (weapon.kills) {
+        tbody += app.roundNr(weapon.headshots / weapon.kills * 100, 1) / 1;
+      }
+      tbody += ' %</td>';
+      tbody += '<td>' + weapon.bought + '</td>';
     });
     var table = '<table class="dataTable"><thead><tr><th class="sorting"><span>Name</span></th><th class="sorting"><span>Kills</span></th><th class="sorting"><span>Headshot %</span></th><th class="sorting"><span>Bought</span></th></tr></thead><tbody>' + tbody + '</tbody></table>';
     if (app.weaponsTable != table) {
@@ -194,28 +194,31 @@ var app = {
   printRoundStatistics: function (data) {
     var roundStatsT = '';
     var roundStatsCT = '';
+    var datafound = false;
     $.each(data.rounds, function (i, el) {
       if (el.endStatus != null) {
+        datafound = true;
         // Check if terrorist win.
-        if (el.winner == el.t) {
+        if (el.endStatus == 'terrorists_win') {
           roundStatsT += '<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>';
         }
         else {
           roundStatsT += '<span class="result"></span>';
         }
         // Check if counter terrorist win.
-        if (el.winner == el.ct) {
+        if (el.endStatus == 'cts_win') {
           roundStatsCT += '<span class="bomb result"><img src="img/' + el.endStatus + '.png" /></span>';
         }
         else {
           roundStatsCT += '<span class="result"></span>';
         }
       }
-      else {
-        roundStatsT += '<span class="result"></span>';
-        roundStatsCT += '<span class="result"></span>';
-      }
+     
     });
+    if (datafound === false) {
+      // roundStatsT += '<span class="result"></span>';
+      // roundStatsCT += '<span class="result"></span>';
+    }
     if (roundStatsT != app.roundStatsT) {
       app.roundStatsT = roundStatsT;
       $('.round_statistics .terrorists').html(app.roundStatsT);
