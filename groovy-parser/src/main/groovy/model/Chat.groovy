@@ -5,5 +5,5 @@ package model
  */
 class Chat {
 
-    List<String> messages = []
+    List<Message> messages = []
 }

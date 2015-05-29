@@ -35,11 +35,6 @@ class WebAPI  {
 	}
 
 	public Object getMatch(int matchId) {
-//		def inputFile = this.getClass().getResource("/response.json")
-//		def json = new JsonSlurper().parseText(inputFile.text)
-//		json.id = matchId;
-//		return JsonOutput.toJson(json)
-
 		return new JsonBuilder(engine)
 	}
 
