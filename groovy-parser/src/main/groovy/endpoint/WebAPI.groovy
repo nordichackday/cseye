@@ -2,8 +2,9 @@ package endpoint
 
 import engine.GameEngine
 import groovy.json.JsonBuilder
-import groovy.json.JsonOutput
-import groovy.json.JsonSlurper
+import model.Game
+import event.Message
+import model.Round
 import spark.Filter
 import spark.Request
 import spark.Response
@@ -29,13 +30,29 @@ class WebAPI  {
 
 		get '/match/:matchId', new Route() {
 			Object handle(Request request, Response response) throws Exception {
-				return getMatch(request.params(":matchId").toInteger())
+
+				def id = request.params(":matchId")
+				if (id.equals("test")) {
+					return getTestGame();
+				} else {
+					getMatch(id.toInteger())
+				}
 			}
 		}
 	}
 
 	public Object getMatch(int matchId) {
-		return new JsonBuilder(engine)
+		return new JsonBuilder(engine.game)
+	}
+
+	public Object getTestGame() {
+		Game game = new Game()
+
+		game.startGame();
+		game.startRound(new Round(id: 1, started: true))
+		game.runningRound.events.add(new Message("JaakkoO", "goes skateboarding", "10:10"))
+
+		return new JsonBuilder(game)
 	}
 
 

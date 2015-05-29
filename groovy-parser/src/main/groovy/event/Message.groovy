@@ -1,9 +1,9 @@
-package model
+package event
 
 /**
  * Created by n23803 on 29.05.15.
  */
-class Message {
+class Message extends Event {
 
 	String name
 	String text

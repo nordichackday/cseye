@@ -4,7 +4,7 @@ class Game {
 
     private def started = false
     private def live = false
-    private List<Round> rounds = []
+    List<Round> rounds = []
 
     private Team team1 = new Team(side: "t")
     private Team team2 = new Team(side: "ct")
